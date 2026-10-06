@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.medcom.dk/SUP_30" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.medcom.dk/SUP_30">
+	<xsd:include schemaLocation="SUPTyper.xsd"/>
+	<xsd:include schemaLocation="SUPKlassifikation.xsd"/>
+	<xsd:include schemaLocation="SUPOrganisation.xsd"/>
+	<xsd:include schemaLocation="SUPBehandlere.xsd"/>
+	<xsd:include schemaLocation="SUPFaellesAttributter.xsd"/>
+	<xsd:include schemaLocation="SUPHaendelse.xsd"/>
+	<!-- ====================== Pakke: Procedureproces ============================-->
+	<xsd:element name="Booking_af_procedure">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Haendelse"/>
+				<xsd:element ref="Procedure_kode"/>
+				<xsd:element ref="Indikation"/>
+				<xsd:element ref="Prioritet"/>
+				<xsd:element ref="Booking_af_procedure_produceret_af"/>
+				<xsd:element ref="Booking_af_procedure_rekvireret_af"/>
+				<xsd:element ref="Booking_af_procedure_afsluttet_af" minOccurs="0"/>
+				<xsd:element ref="Booking_udloest_af" minOccurs="0"/>
+			</xsd:sequence>
+			<xsd:attribute name="Starttidspunkt" type="SUPdateTime" use="required"/>
+			<xsd:attribute name="Sluttidspunkt" type="SUPdateTime" use="optional"/>
+			<xsd:attribute name="Aflysningstidspunkt" type="SUPdateTime" use="optional"/>
+			<xsd:attribute name="Afslutningsaarsag" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Booking_udloest_af">
+		<xsd:complexType>
+			<xsd:attribute name="Planlagt_procedure_identifikation" type="xsd:string" use="optional"/>
+			<xsd:attribute name="Ordination_identifikation" type="xsd:string" use="optional"/>
+			<xsd:attribute name="Rekvisition_identifikation" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Booking_af_procedure_produceret_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Producerende_Enhed"/>
+				<xsd:element ref="Producerende_Behandler"/>
+			</xsd:sequence>
+			<xsd:attribute name="Udfoerelsessted" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Booking_af_procedure_rekvireret_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Rekvirerende_Enhed"/>
+				<xsd:element ref="Rekvirerende_Behandler"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Booking_af_procedure_afsluttet_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Afsluttende_Enhed"/>
+				<xsd:element ref="Afsluttende_Behandler"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Ordination">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Haendelse"/>
+				<xsd:element ref="Procedure_kode"/>
+				<xsd:element ref="Indikation" minOccurs="0"/>
+				<xsd:element ref="Prioritet" minOccurs="0"/>
+				<xsd:element ref="AfslutningsAarsag" minOccurs="0"/>
+				<xsd:element ref="Ordination_ordineret_af"/>
+				<xsd:element ref="Ordination_planlagt_produceret_af" minOccurs="0"/>
+				<xsd:element ref="Ordination_seponeret_af" minOccurs="0"/>
+				<xsd:element ref="Planlaegning_af_ordination"/>
+			</xsd:sequence>
+			<xsd:attribute name="Starttidspunkt" type="SUPdateTime" use="required"/>
+			<xsd:attribute name="Sluttidspunkt" type="SUPdateTime" use="optional"/>
+			<xsd:attribute name="Seponeringstidspunkt" type="SUPdateTime" use="optional"/>
+			<xsd:attribute name="Antal" type="SUPfloat" use="optional"/>
+			<xsd:attribute name="Enhed" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Ordination_ordineret_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Ordinerende_Behandler" minOccurs="0"/>
+				<xsd:element ref="Ordinerende_Enhed"/>
+			</xsd:sequence>
+			<xsd:attribute name="Ordinationssted" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Ordination_planlagt_produceret_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Producerende_Behandler" minOccurs="0"/>
+				<xsd:element ref="Producerende_Enhed"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Ordination_seponeret_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Seponerende_Behandler" minOccurs="0"/>
+				<xsd:element ref="Seponerende_Enhed"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Planlaegning_af_ordination">
+		<xsd:complexType>
+			<xsd:attribute name="Planlagt_procedure_identifikation" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Planlagt_procedure">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Haendelse"/>
+				<xsd:element ref="Procedure_kode" minOccurs="0"/>
+				<xsd:element ref="Indikation" minOccurs="0"/>
+				<xsd:element ref="Prioritet" minOccurs="0"/>
+				<xsd:element ref="AfslutningsAarsag" minOccurs="0"/>
+				<xsd:element ref="Planlagt_procedure_planlagt_af"/>
+				<xsd:element ref="Planlagt_procedure_afsluttet_af" minOccurs="0"/>
+			</xsd:sequence>
+			<xsd:attribute name="Planlaegningstidspunkt" type="xsd:string" use="optional"/>
+			<xsd:attribute name="Afslutningstidspunkt" type="xsd:string" use="optional"/>
+			<xsd:attribute name="Objektreference" type="xsd:anyURI" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Planlagt_procedure_afsluttet_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Afsluttende_Behandler" minOccurs="0"/>
+				<xsd:element ref="Afsluttende_Enhed"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Planlagt_procedure_planlagt_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Planlaeggende_Behandler" minOccurs="0"/>
+				<xsd:element ref="Planlaeggende_Enhed"/>
+			</xsd:sequence>
+			<xsd:attribute name="Planlaegningssted" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Rekvisition">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Haendelse"/>
+				<xsd:element ref="Procedure_kode"/>
+				<xsd:element ref="Indikation" minOccurs="0"/>
+				<xsd:element ref="Prioritet" minOccurs="0"/>
+				<xsd:element ref="AfslutningsAarsag" minOccurs="0"/>
+				<xsd:element ref="Rekvisition_udloest_af" minOccurs="0"/>
+				<xsd:element ref="Rekvisition_rekvireret_af"/>
+				<xsd:element ref="Rekvisition_planlagt_produceret_af"/>
+				<xsd:element ref="Rekvisition_faktisk_afsluttet_af" minOccurs="0"/>
+			</xsd:sequence>
+			<xsd:attribute name="Rekvisitionstidspunkt" type="xsd:string" use="required"/>
+			<xsd:attribute name="Afslutningstidspunkt" type="xsd:string" use="optional"/>
+			<xsd:attribute name="Antal" type="xsd:string" use="optional"/>
+			<xsd:attribute name="Enhed" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Rekvisition_faktisk_afsluttet_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Afsluttende_Behandler" minOccurs="0"/>
+				<xsd:element ref="Afsluttende_Enhed"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Rekvisition_planlagt_produceret_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Producerende_Behandler" minOccurs="0"/>
+				<xsd:element ref="Producerende_Enhed"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Rekvisition_rekvireret_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Rekvirerende_Behandler" minOccurs="0"/>
+				<xsd:element ref="Rekvirerende_Enhed"/>
+			</xsd:sequence>
+			<xsd:attribute name="Rekvisitionssted" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Rekvisition_udloest_af">
+		<xsd:complexType>
+			<xsd:attribute name="Ordination_Identifikation" type="xsd:string" use="optional"/>
+			<xsd:attribute name="Planlagt_procedure_Identifikation" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Udfoert_procedure">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Haendelse"/>
+				<xsd:element ref="Art" minOccurs="0"/>
+				<xsd:element ref="Procedure_kode"/>
+				<xsd:element ref="Indikation" minOccurs="0"/>
+				<xsd:element ref="Prioritet" minOccurs="0"/>
+				<xsd:element ref="AfslutningsAarsag" minOccurs="0"/>
+				<xsd:element ref="Udloesende_haendelse" minOccurs="0"/>
+				<xsd:element ref="Udfoert_procedure_rekvireret_af" minOccurs="0"/>
+				<xsd:element ref="Udfoert_procedure_produceret_af"/>
+				<xsd:element ref="Udfoert_procedure_afsluttet_af" minOccurs="0"/>
+			</xsd:sequence>
+			<xsd:attribute name="Starttidspunkt" type="SUPdateTime" use="required"/>
+			<xsd:attribute name="Sluttidspunkt" type="SUPdateTime" use="optional"/>
+			<xsd:attribute name="Afslutningstidspunkt" type="SUPdateTime" use="optional"/>
+			<xsd:attribute name="Objektreference" type="xsd:anyURI" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Udfoert_procedure_rekvireret_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Rekvirerende_Behandler" minOccurs="0"/>
+				<xsd:element ref="Rekvirerende_Enhed"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Udfoert_procedure_produceret_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Producerende_Behandler" minOccurs="0"/>
+				<xsd:element ref="Producerende_Enhed"/>
+			</xsd:sequence>
+			<xsd:attribute name="Udfoerelsessted" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Udfoert_procedure_afsluttet_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Afsluttende_Behandler" minOccurs="0"/>
+				<xsd:element ref="Afsluttende_Enhed"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Udloesende_haendelse">
+		<xsd:complexType>
+			<xsd:attribute name="Rekvisition_Identifikation" type="xsd:string" use="optional"/>
+			<xsd:attribute name="Ordination_Identifikation" type="xsd:string" use="optional"/>
+			<xsd:attribute name="Planlagt_procedure_Identifikation" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

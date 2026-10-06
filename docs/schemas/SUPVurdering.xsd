@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.medcom.dk/SUP_30" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.medcom.dk/SUP_30">
+	<xsd:include schemaLocation="SUPTyper.xsd"/>
+	<xsd:include schemaLocation="SUPKlassifikation.xsd"/>
+	<xsd:include schemaLocation="SUPOrganisation.xsd"/>
+	<xsd:include schemaLocation="SUPBehandlere.xsd"/>
+	<xsd:include schemaLocation="SUPFaellesAttributter.xsd"/>
+	<xsd:include schemaLocation="SUPHaendelse.xsd"/>
+	<!-- ====================== Pakke: Vurdering  ============================== -->
+	<xsd:element name="Diagnose">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Haendelse"/>
+				<xsd:element ref="Art"/>
+				<xsd:element ref="DiagnoseKode"/>
+				<xsd:element ref="Diagnosticering_udfoert_af"/>
+				<xsd:element ref="Diagnose_afsluttet_af" minOccurs="0"/>
+				<xsd:element ref="Diagn_ref_til_proc" minOccurs="0"/>
+			</xsd:sequence>
+			<xsd:attribute name="Diagnosetidspunkt" type="SUPdateTime" use="required"/>
+			<xsd:attribute name="Afsluttidspunkt" type="SUPdateTime" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="DiagnoseKode">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="SammensatKodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Diagnosticering_udfoert_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Ansvarlig_Behandler" minOccurs="0"/>
+				<xsd:element ref="Ansvarlig_Enhed"/>
+			</xsd:sequence>
+			<xsd:attribute name="Diagnosested" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Diagnose_afsluttet_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Afsluttende_Behandler" minOccurs="0"/>
+				<xsd:element ref="Afsluttende_Enhed"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Diagn_ref_til_proc">
+		<xsd:complexType>
+			<xsd:attribute name="Procedure_identifikation" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Effekt_af_behandling">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Haendelse"/>
+				<xsd:element ref="EffektKode"/>
+				<xsd:element ref="Us_procedure" minOccurs="0"/>
+				<xsd:element ref="Beh_procedure" minOccurs="0"/>
+				<xsd:element ref="Foerkode" minOccurs="0"/>
+				<xsd:element ref="Efterkode" minOccurs="0"/>
+				<xsd:element ref="Effekt_af_behandling_observeret_af"/>
+				<xsd:element ref="Effekt_af_behandling_produceret_af"/>
+				<xsd:element ref="Behandlings_procedure_der_har_effekten" minOccurs="0"/>
+			</xsd:sequence>
+			<xsd:attribute name="Observationstidspunkt" type="SUPdateTime" use="required"/>
+			<xsd:attribute name="Behandlingstidspunkt" type="SUPdateTime" use="optional"/>
+			<xsd:attribute name="Foervaerdi" type="xsd:string" use="optional"/>
+			<xsd:attribute name="EnhedFoervaerdi" type="xsd:string" use="optional"/>
+			<xsd:attribute name="Eftervaerdi" type="xsd:string" use="optional"/>
+			<xsd:attribute name="EnhedEftervaerdi" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="EffektKode">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="SammensatKodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Beh_procedure">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="KodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Foerkode">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="KodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Efterkode">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="KodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Effekt_af_behandling_produceret_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Producerende_Behandler" minOccurs="0"/>
+				<xsd:element ref="Producerende_Enhed"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Effekt_af_behandling_observeret_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Observerende_Behandler" minOccurs="0"/>
+				<xsd:element ref="Observerende_Enhed"/>
+			</xsd:sequence>
+			<xsd:attribute name="ObservationsSted" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Behandlings_procedure_der_har_effekten">
+		<xsd:complexType>
+			<xsd:attribute name="Procedure_identifikation" type="xsd:string" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Komplikation_bivirkning">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Haendelse"/>
+				<xsd:element ref="DiagnoseKode"/>
+				<xsd:element ref="Procedurekode" minOccurs="0"/>
+				<xsd:element ref="Beh_procedure" minOccurs="0"/>
+				<xsd:element ref="Komplikation_bivirkning_observeret_af"/>
+				<xsd:element ref="Komplikation_bivirkning_produceret_af"/>
+				<xsd:element ref="Procedure_der_kompliceres" minOccurs="0"/>
+			</xsd:sequence>
+			<xsd:attribute name="Observationstidspunkt" type="SUPdateTime" use="required"/>
+			<xsd:attribute name="Proceduretidspunkt" type="SUPdateTime" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Komplikation_bivirkning_produceret_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Producerende_Behandler" minOccurs="0"/>
+				<xsd:element ref="Producerende_Enhed"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Komplikation_bivirkning_observeret_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Observerende_Behandler" minOccurs="0"/>
+				<xsd:element ref="Observerende_Enhed"/>
+			</xsd:sequence>
+			<xsd:attribute name="ObservationsSted" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Procedure_der_kompliceres">
+		<xsd:complexType>
+			<xsd:attribute name="Procedure_identifikation" type="xsd:string" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Maal">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Haendelse"/>
+				<xsd:element ref="UnormaltResultat"/>
+				<xsd:element ref="MaalKode"/>
+				<xsd:element ref="Problem_diagnose" minOccurs="0"/>
+				<xsd:element ref="AfslutningsAarsag" minOccurs="0"/>
+				<xsd:element ref="Maal_besluttet_af"/>
+				<xsd:element ref="Maal_afsluttet_af"/>
+				<xsd:element ref="Problem_diagnose_som_maalet_gaelder" minOccurs="0"/>
+			</xsd:sequence>
+			<xsd:attribute name="Beslutningstidspunkt" type="SUPdateTime" use="required"/>
+			<xsd:attribute name="OenskesOpfyldttidspunkt" type="SUPdateTime" use="optional"/>
+			<xsd:attribute name="Afslutningstidspunkt" type="SUPdateTime" use="optional"/>
+			<xsd:attribute name="Vaerdi" type="SUPfloat" use="optional"/>
+			<xsd:attribute name="EnhedVaerdi" type="xsd:string" use="optional"/>
+			<xsd:attribute name="NedreGraense" type="SUPfloat" use="optional"/>
+			<xsd:attribute name="EnhedNedregraense" type="xsd:string" use="optional"/>
+			<xsd:attribute name="OevreGraense" type="SUPfloat" use="optional"/>
+			<xsd:attribute name="EnhedOevreGraense" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="UnormaltResultat">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="KodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="MaalKode">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="SammensatKodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Problem_diagnose">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="KodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Maal_besluttet_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Besluttende_Behandler" minOccurs="0"/>
+				<xsd:element ref="Besluttende_Enhed"/>
+			</xsd:sequence>
+			<xsd:attribute name="BesluttendeSted" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Maal_afsluttet_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Afsluttende_Behandler" minOccurs="0"/>
+				<xsd:element ref="Afsluttende_Enhed"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Problem_diagnose_som_maalet_gaelder">
+		<xsd:complexType>
+			<xsd:attribute name="Problem_identifikation" type="xsd:string" use="required"/>
+			<xsd:attribute name="Diagnose_identifikation" type="xsd:string" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Problem">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Haendelse"/>
+				<xsd:element ref="ProblemKode"/>
+				<xsd:element ref="Aarsag" minOccurs="0"/>
+				<xsd:element ref="AfslutningsAarsag" minOccurs="0"/>
+				<xsd:element ref="Problem_konstateret_af"/>
+				<xsd:element ref="Problem_afsluttet_af"/>
+				<xsd:element ref="Procedure_hvor_man_konstaterer_problem" minOccurs="0"/>
+			</xsd:sequence>
+			<xsd:attribute name="Konstateringstidspunkt" type="SUPdateTime" use="required"/>
+			<xsd:attribute name="Afslutningstidspunkt" type="SUPdateTime" use="optional"/>
+			<xsd:attribute name="Vaerdi" type="SUPfloat" use="optional"/>
+			<xsd:attribute name="Enhed" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="ProblemKode">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="SammensatKodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Problem_konstateret_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Konstaterende_Behandler" minOccurs="0"/>
+				<xsd:element ref="Konstaterende_Enhed"/>
+			</xsd:sequence>
+			<xsd:attribute name="KonstateringsSted" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Problem_afsluttet_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Afsluttende_Behandler" minOccurs="0"/>
+				<xsd:element ref="Afsluttende_Enhed"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Procedure_hvor_man_konstaterer_problem">
+		<xsd:complexType>
+			<xsd:attribute name="Procedure_identifikation" type="xsd:string" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

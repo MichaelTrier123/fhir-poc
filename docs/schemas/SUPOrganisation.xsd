@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.medcom.dk/SUP_30" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.medcom.dk/SUP_30">
+	<!-- ====================== Pakke: Organisation  ============================== -->
+	<xsd:element name="Afsluttende_Enhed">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Organisatorisk_Enhed"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Ansvarlig_Enhed">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Organisatorisk_Enhed"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Besluttende_Enhed">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Organisatorisk_Enhed"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Konstaterende_Enhed">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Organisatorisk_Enhed"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Laegelig_Ansvarlig_Enhed">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Organisatorisk_Enhed"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Laegelig_kontaktansvarlig_Enhed">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Organisatorisk_Enhed"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Observerende_Enhed">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Organisatorisk_Enhed"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="OprindeligAnsvarligEnhed">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Organisatorisk_Enhed"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Ordinerende_Enhed">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Organisatorisk_Enhed"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Organisatorisk_Enhed">
+		<xsd:complexType>
+		    <xsd:attribute name="KodeType" use="optional">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="sygehusafdelingsnummer"/>
+						<xsd:enumeration value="sorkode"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+			<xsd:attribute name="Kode" type="xsd:string" use="optional"/>
+			<xsd:attribute name="Institution_tekst" type="xsd:string" use="optional"/>
+			<xsd:attribute name="Afdeling_tekst" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Planlaeggende_Enhed">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Organisatorisk_Enhed"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Producerende_Enhed">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Organisatorisk_Enhed"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Registrerings_Enhed">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Organisatorisk_Enhed"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Rekvirerende_Enhed">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Organisatorisk_Enhed"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Seponerende_Enhed">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Organisatorisk_Enhed"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.medcom.dk/SUP_30" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.medcom.dk/SUP_30">
+	<xsd:include schemaLocation="SUPTyper.xsd"/>
+	<xsd:include schemaLocation="SUPKlassifikation.xsd"/>
+	<xsd:include schemaLocation="SUPOrganisation.xsd"/>
+	<xsd:include schemaLocation="SUPBehandlere.xsd"/>
+	<xsd:include schemaLocation="SUPFaellesAttributter.xsd"/>
+	<xsd:include schemaLocation="SUPHaendelse.xsd"/>
+	<!-- ====================== Pakke: Medicinering =========================-->
+	<xsd:element name="Administrationsmaade">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="KodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="ATC_Kode">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="KodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Form">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="KodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Medicin_givet_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Producerende_Behandler" minOccurs="0"/>
+				<xsd:element ref="Producerende_Enhed"/>
+			</xsd:sequence>
+			<xsd:attribute name="Procedure_sted" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Medicin_planlagt_givet_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Producerende_Behandler" minOccurs="0"/>
+				<xsd:element ref="Producerende_Enhed"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Medicingivning">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Haendelse"/>
+				<xsd:element ref="Type"/>
+				<xsd:element ref="Praeparat"/>
+				<xsd:element ref="Indikation" minOccurs="0"/>
+				<xsd:element ref="AfslutningsAarsag" minOccurs="0"/>
+				<xsd:element ref="ATC_Kode" minOccurs="0"/>
+				<xsd:element ref="Administrationsmaade" minOccurs="0"/>
+				<xsd:element ref="Form" minOccurs="0"/>
+				<xsd:element ref="Medicin_givet_af"/>
+				<xsd:element ref="Medicingivning_ordineret_af" minOccurs="0"/>
+				<xsd:element ref="Medicingivning_afsluttet_af"/>
+				<xsd:element ref="Medicingivning_foraarsaget_af" minOccurs="0"/>
+			</xsd:sequence>
+			<xsd:attribute name="Starttidspunkt" type="SUPdateTime" use="required"/>
+			<xsd:attribute name="Afslutningstidspunkt" type="SUPdateTime" use="optional"/>
+			<xsd:attribute name="Enkeltdosis" type="SUPfloat" use="required"/>
+			<xsd:attribute name="EnhedEnkeltdosis" type="xsd:string" use="required"/>
+			<xsd:attribute name="Styrke" type="xsd:string" use="optional"/>
+			<xsd:attribute name="Objektreference" type="xsd:anyURI" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Medicingivning_afsluttet_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Afsluttende_Enhed"/>
+				<xsd:element ref="Afsluttende_Behandler" minOccurs="0"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Medicingivning_ordineret_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Ordinerende_Behandler" minOccurs="0"/>
+				<xsd:element ref="Ordinerende_Enhed"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Medicingivning_foraarsaget_af">
+		<xsd:complexType>
+			<xsd:attribute name="Medicinordination_Identifikation" type="xsd:string" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Medicinordination">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Haendelse"/>
+				<xsd:element ref="Praeparat"/>
+				<xsd:element ref="Indikation" minOccurs="0"/>
+				<xsd:element ref="Type"/>
+				<xsd:element ref="SeponeringsAarsag" minOccurs="0"/>
+				<xsd:element ref="ATC_Kode"/>
+				<xsd:element ref="Administrationsmaade"/>
+				<xsd:element ref="Form" minOccurs="0"/>
+				<xsd:element ref="Medicinordination_ordineret_af"/>
+				<xsd:element ref="Medicin_planlagt_givet_af" minOccurs="0"/>
+				<xsd:element ref="Medicinordination_seponeret_af" minOccurs="0"/>
+			</xsd:sequence>
+			<xsd:attribute name="Starttidspunkt" type="SUPdateTime" use="required"/>
+			<xsd:attribute name="Sluttidspunkt" type="SUPdateTime" use="optional"/>
+			<xsd:attribute name="Seponeringstidspunkt" type="SUPdateTime" use="optional"/>
+			<xsd:attribute name="DoegnDosis" type="SUPfloat" use="optional"/>
+			<xsd:attribute name="EnkeltDosis" type="SUPfloat" use="optional"/>
+			<xsd:attribute name="MaksimalDoegnDosis" type="SUPfloat" use="optional"/>
+			<xsd:attribute name="Enhed" type="xsd:string" use="optional"/>
+			<xsd:attribute name="Styrke" type="xsd:string" use="optional"/>
+			<xsd:attribute name="Objektreference" type="xsd:anyURI" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Medicinordination_ordineret_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Ordinerende_Behandler" minOccurs="0"/>
+				<xsd:element ref="Ordinerende_Enhed"/>
+			</xsd:sequence>
+			<xsd:attribute name="Ordinationssted" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Medicinordination_seponeret_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Seponerende_Behandler" minOccurs="0"/>
+				<xsd:element ref="Seponerende_Enhed"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Praeparat">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="SammensatKodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="SeponeringsAarsag">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="KodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Type">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="KodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

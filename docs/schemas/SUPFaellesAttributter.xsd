@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.medcom.dk/SUP_30" targetNamespace="http://www.medcom.dk/SUP_30">
+	<xsd:include schemaLocation="SUPOrganisation.xsd"/>
+	<xsd:include schemaLocation="SUPBehandlere.xsd"/>
+	<xsd:include schemaLocation="SUPKlassifikation.xsd"/>
+	<xsd:include schemaLocation="SUPTyper.xsd"/>
+	<!-- ====================== Fælles attributter============================-->
+	<xsd:element name="Prioritet">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="KodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Indikation">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="KodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="AfslutningsAarsag">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="KodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Procedure_kode">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="SammensatKodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Procedurekode">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="KodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Art">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="KodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Resultat">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="SammensatKodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Us_procedure">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="KodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Aarsag">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="KodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="CaveOplysninger">
+		<xsd:complexType>
+			<xsd:sequence minOccurs="0">
+				<xsd:element ref="Organisatorisk_Enhed"/>
+			</xsd:sequence>
+			<xsd:attribute name="Tekst" type="xsd:string" use="required"/>
+			<xsd:attribute name="Dato" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:attributeGroup name="PersonAttributter">
+		<xsd:attribute name="CPRnummer" type="xsd:string" use="required"/>
+		<xsd:attribute name="Navn" type="xsd:string" use="optional"/>
+		<xsd:attribute name="Adresse" type="xsd:string" use="optional"/>
+		<xsd:attribute name="Kommunekode" type="xsd:string" use="optional"/>
+		<xsd:attribute name="Kommune" type="xsd:string" use="optional"/>
+		<xsd:attribute name="KommuneTilflytningsdato" type="SUPdateTime" use="optional"/>
+		<xsd:attribute name="Koen" use="optional">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="M"/>
+					<xsd:enumeration value="K"/>
+					<xsd:enumeration value="U"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="Foedselsdato" type="SUPdateTime" use="optional"/>
+		<xsd:attribute name="TelefonNummer" type="xsd:string" use="optional"/>
+		<xsd:attribute name="Paaroerende" type="xsd:string" use="optional"/>
+		<xsd:attribute name="EgenLaegesNavn" type="xsd:string" use="optional"/>
+		<xsd:attribute name="EgenLaegesYdernr" type="xsd:string" use="optional"/>
+		<xsd:attribute name="EgenLaegeStartDato" type="xsd:string" use="optional"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="AfleverPatientdataAttributter">
+		<xsd:attribute name="VersionsNummer" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Angiver SUP version af patientdata.</xsd:documentation>
+			</xsd:annotation>
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="2.0"/>
+					<xsd:enumeration value="2.1"/>
+					<xsd:enumeration value="2.2"/>
+					<xsd:enumeration value="2.3"/>
+					<xsd:enumeration value="3.0"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="Identifikation" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Entydig identifikation af af patientdata-udtrækket. Identifikation dannes af udtræksprogrammelet. Kan f.esk. benyttes i fejlsituatiuoner til at bestemme hvilke data der er sendt/modtaget.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="ForsendelsesTid" type="SUPdateTime" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Tidspunkt hvor patientdata er sendt fra udtræksprogrammelet til SUP databasen.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="AfsenderSystem" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Angiver system der har lavet patientudtræk og afsendt det.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="TransaktionsType" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Angiver transaktionstype der skal anvendes på patientdata.</xsd:documentation>
+			</xsd:annotation>
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="Opdater"/>
+					<xsd:enumeration value="OpdaterSpecielt"/>
+					<xsd:enumeration value="Slet"/>
+					<xsd:enumeration value="SletSpecielt"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+</xsd:schema>

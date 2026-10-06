@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.medcom.dk/SUP_30" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.medcom.dk/SUP_30">
+	<!-- ====================== types  ============================== -->
+	<xsd:simpleType name="undef">
+		<xsd:annotation>
+			<xsd:documentation>Obligatoriske felter i SUP, hvis værdi ikke kan udfyldes, da værdien ikke findes i kildesystemet, udfyldes i indberetningen med værdien "_".
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="$?"/>
+			<xsd:enumeration value="_"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="SUPfloat">
+		<xsd:union memberTypes="xsd:float undef"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="SUPdateTime">
+		<xsd:union memberTypes="xsd:dateTime xsd:date undef"/>
+	</xsd:simpleType>
+</xsd:schema>
