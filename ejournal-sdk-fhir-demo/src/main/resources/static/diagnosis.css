@@ -1,0 +1,39 @@
+.view-switch{display:flex;gap:4px;margin:22px 0 16px;border-bottom:1px solid var(--line)}
+.view-switch button{padding:13px 18px;border:0;border-bottom:3px solid transparent;background:transparent;color:var(--muted);font-size:13px;font-weight:600}
+.view-switch button[aria-pressed=true]{color:var(--teal);border-bottom-color:var(--teal)}
+.diagnosis-panel{background:var(--paper);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.diagnosis-heading{display:flex;justify-content:space-between;align-items:start;gap:18px;padding:25px 24px 0}
+.diagnosis-heading h2{font-size:24px;font-weight:550;line-height:1.4}
+.diagnosis-heading .badge{white-space:nowrap;margin-top:5px}
+.diagnosis-explanation{font-size:12px;color:var(--muted);line-height:1.7;background:var(--canvas);border-left:3px solid #9abfb0;margin:8px 24px 20px;padding:12px 15px}
+.diagnosis-stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;padding:0 24px 20px}
+.diagnosis-stat{text-align:left;color:var(--ink);background:white;border:1px solid var(--line);border-radius:7px;padding:14px 16px}
+.diagnosis-stat:hover{border-color:#6d9d8c}
+.diagnosis-stat[aria-pressed=true]{border-color:var(--teal);background:var(--mint)}
+.diagnosis-controls{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,1fr);gap:16px;padding:0 24px 20px}
+.diagnosis-controls label{display:block;font-size:11px;font-weight:600;margin-bottom:7px}
+.diagnosis-controls input,.diagnosis-controls select{width:100%;min-width:0;border:1px solid var(--line);border-radius:6px;padding:11px;background:#f9fbfa;color:var(--ink);font:inherit;font-size:12px}
+.diagnosis-result-count{font-size:11px;color:var(--muted);margin:18px 24px 0;line-height:1.6}
+.diagnosis-groups{padding:0 24px 25px}
+.diagnosis-area+.diagnosis-area{margin-top:30px}
+.diagnosis-area .section-heading{gap:15px}
+.diagnosis-card{border:1px solid var(--line);border-radius:8px;padding:18px;margin-top:12px}
+.diagnosis-card-top{display:flex;justify-content:space-between;gap:24px;align-items:start}
+.diagnosis-card-title{min-width:0}
+.diagnosis-card h4{font-size:14px;font-weight:600;line-height:1.6;margin:0 0 5px;overflow-wrap:anywhere}
+.diagnosis-card .code{display:inline-block;font-family:Consolas,monospace;font-size:11px;background:var(--canvas);padding:3px 6px;border-radius:4px}
+.action-badge{background:var(--mint);color:var(--teal);font-weight:600}
+.diagnosis-last{flex-shrink:0;max-width:300px;text-align:right}
+.diagnosis-last strong{display:block;font-size:14px;font-weight:600;color:var(--teal)}
+.diagnosis-last .muted{display:block;font-size:10px;margin-top:7px}
+.diagnosis-card .organization{font-size:11px;color:var(--muted);line-height:1.6;margin:14px 0 0}
+.diagnosis-history{border-top:1px solid var(--line);margin-top:14px;padding-top:12px;font-size:11px}
+.diagnosis-history summary{cursor:pointer;color:var(--teal);padding:3px 0}
+.diagnosis-occurrence{padding:14px 0;display:flex;align-items:start;justify-content:space-between;gap:15px;border-bottom:1px solid var(--line)}
+.diagnosis-occurrence:last-child{border-bottom:0;padding-bottom:0}
+.diagnosis-occurrence>div:first-child{min-width:0;overflow-wrap:anywhere}
+.diagnosis-occurrence strong{display:block;font-size:11px;margin-bottom:5px}
+.diagnosis-occurrence .muted{display:block;font-size:11px}
+.diagnosis-occurrence-actions{display:flex;gap:8px;flex-shrink:0}
+@media(max-width:900px){.diagnosis-stats{grid-template-columns:repeat(3,minmax(0,1fr))}.diagnosis-heading{flex-direction:column;gap:0}.diagnosis-heading .badge{margin:0 0 15px}.diagnosis-card-top{gap:15px}.diagnosis-last{max-width:240px}}
+@media(max-width:600px){.view-switch button{font-size:12px;padding:12px}.diagnosis-heading{padding:20px 17px 0}.diagnosis-heading h2{font-size:20px}.diagnosis-explanation{margin:8px 17px 17px}.diagnosis-stats{grid-template-columns:repeat(2,minmax(0,1fr));padding:0 17px 17px}.diagnosis-stat{padding:12px}.diagnosis-controls{grid-template-columns:1fr;padding:0 17px 17px}.diagnosis-groups{padding:0 17px 20px}.diagnosis-result-count{margin:17px 17px 0}.diagnosis-card{padding:15px}.diagnosis-card-top{flex-direction:column}.diagnosis-last{text-align:left;max-width:none}.diagnosis-area .section-heading{align-items:start}.diagnosis-occurrence{flex-direction:column;gap:8px}.diagnosis-occurrence-actions .text-button{padding-left:0}}

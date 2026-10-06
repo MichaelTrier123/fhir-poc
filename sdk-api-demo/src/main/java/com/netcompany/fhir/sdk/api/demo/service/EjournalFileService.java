@@ -53,6 +53,14 @@ public class EjournalFileService {
         return readFile(normalizedCpr, "kontaktperioder-" + key + ".json");
     }
 
+    public JsonNode getNotater(String cpr, UUID key) {
+        return readFile(normalizeCpr(cpr), "notater-" + key + ".json");
+    }
+
+    public JsonNode getEpikriser(String cpr, UUID key) {
+        return readFile(normalizeCpr(cpr), "epikriser-" + key + ".json");
+    }
+
     public static String normalizeCpr(String cpr) {
         if (cpr == null) {
             throw new InvalidInputException("Invalid CPR");

@@ -40,6 +40,8 @@ class EjournalControllerTest {
         Files.createDirectories(cprDir);
         Files.writeString(cprDir.resolve("forloebsoversigt-0506889996.json"), "{\"forloeb\": \"data\"}");
         Files.writeString(cprDir.resolve("diagnoser-605bf396-4276-4497-ba8e-0f397d1b3eb3.json"), "{\"diag\": \"ok\"}");
+        Files.writeString(cprDir.resolve("notater-605bf396-4276-4497-ba8e-0f397d1b3eb3.json"), "{\"Notater\": []}");
+        Files.writeString(cprDir.resolve("epikriser-605bf396-4276-4497-ba8e-0f397d1b3eb3.json"), "{\"Epikriser\": []}");
     }
 
     @Test
@@ -82,5 +84,20 @@ class EjournalControllerTest {
     void malformedKeyReturns400() throws Exception {
         mockMvc.perform(get("/api/ejournal/0506889996/diagnoser").param("key", "not-a-uuid"))
                 .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void documentsAreAvailableWithValidatedKeys() throws Exception {
+        for (String type : new String[]{"notater", "epikriser"}) {
+            mockMvc.perform(get("/api/ejournal/050688-9996/" + type)
+                    .param("key", "605bf396-4276-4497-ba8e-0f397d1b3eb3"))
+                    .andExpect(status().isOk())
+                    .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+            mockMvc.perform(get("/api/ejournal/0506889996/" + type).param("key", "invalid"))
+                    .andExpect(status().isBadRequest());
+            mockMvc.perform(get("/api/ejournal/0506889996/" + type)
+                    .param("key", "00000000-0000-0000-0000-000000000000"))
+                    .andExpect(status().isNotFound());
+        }
     }
 }

@@ -54,4 +54,14 @@ public class EjournalController {
             throw new InvalidInputException("Invalid key");
         }
     }
+
+    @GetMapping("/{cpr}/notater")
+    public JsonNode notater(@PathVariable String cpr, @RequestParam("key") String key) {
+        return fileService.getNotater(cpr, parseUuid(key));
+    }
+
+    @GetMapping("/{cpr}/epikriser")
+    public JsonNode epikriser(@PathVariable String cpr, @RequestParam("key") String key) {
+        return fileService.getEpikriser(cpr, parseUuid(key));
+    }
 }

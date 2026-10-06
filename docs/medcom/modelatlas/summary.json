@@ -1,0 +1,17 @@
+{
+  "schemaFiles": 22,
+  "globalElements": 167,
+  "localElements": 4,
+  "elementDeclarations": 171,
+  "elementNames": 155,
+  "elementReferences": 357,
+  "attributeDeclarations": 187,
+  "attributeNames": 117,
+  "attributeGroups": 2,
+  "reusedElements": 55,
+  "clinicalElements": 86,
+  "clinicalAttributes": 138,
+  "issues": 11,
+  "uniqueGlobalElementNames": 154,
+  "globalElementVariantNames": 8
+}

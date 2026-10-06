@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="da" data-journal-layout="episode-journal-5">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>e-journal · Sygehistorien i sammenhæng</title>
+  <link rel="stylesheet" href="styles.css?v=episode-journal-5">
+  <link rel="stylesheet" href="diagnosis.css?v=episode-journal-5">
+  <link rel="stylesheet" href="journal.css?v=episode-journal-5">
+  <script src="diagnosis-overview.js?v=episode-journal-5" defer></script>
+  <script src="app.js?v=episode-journal-5" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="e-journal forside">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M7 8h15l5 5v20H7zM22 8v6h5M11 20h9M11 25h7"/><path d="M30 5v25M27 7h6M33 11c-9-2-10 4-3 6s7 6 0 8"/><circle cx="30" cy="4" r="1.5" fill="currentColor" stroke="none"/></svg></span>
+      <span class="brand-name">e-journal <small>Forløb · viden · sammenhæng</small></span>
+    </a>
+    <span class="environment"><span class="dot"></span> Lokal demo <span class="divider">/</span> FHIR R4</span>
+  </header>
+  <main>
+    <section class="intro">
+      <div><p class="eyebrow">PATIENTJOURNAL</p><h1>Sygehistorien i sammenhæng.</h1><p class="subtitle">Følg patientens forløb fra henvisning til diagnoser, behandling og dokumentation.</p></div>
+      <form id="patient-form" class="patient-form">
+        <label for="cpr">Hent patient fra SDK-demoen</label>
+        <div class="input-group"><input id="cpr" name="cpr" inputmode="numeric" autocomplete="off" placeholder="CPR · 10 cifre" pattern="[0-9]{6}-?[0-9]{4}" required aria-describedby="input-hint"><button id="load" type="submit">Hent journal <span aria-hidden="true">→</span></button></div>
+        <small id="input-hint">Brug et CPR fra et lokalt eksempel i datafolderen.</small>
+      </form>
+    </section>
+    <p id="feedback" class="feedback" role="status" aria-live="polite">Klar til at hente et lokalt datasæt.</p>
+    <section id="empty-state" class="welcome">
+      <div class="welcome-icon" aria-hidden="true">↗</div><h2>Journalen starter med en patient</h2><p>Hent data fra SDK-API’et for at se en struktureret journal<br>og undersøge de underliggende FHIR-ressourcer.</p>
+      <div class="pipeline"><span>SDK API</span><span aria-hidden="true">→</span><span>FHIR R4</span><span aria-hidden="true">→</span><span>Journaloverblik</span></div>
+    </section>
+    <section id="journal" hidden aria-busy="false" aria-label="Patientjournal">
+      <div class="patient-banner">
+        <div class="avatar" aria-hidden="true" id="initials">P</div>
+        <div class="patient-identity"><p class="eyebrow">PATIENT</p><h2 id="patient-name"></h2><p id="patient-cpr"></p></div>
+        <div class="patient-actions"><span id="resource-total" class="muted"></span><button id="download" class="secondary" type="button">↓ Download FHIR</button></div>
+      </div>
+      <details id="quality" class="quality"><summary id="quality-summary"></summary><p>Kildens usikkerheder bevares. Dette er en demo af R4-ressourcer; profiler er ikke officielt valideret.</p><ul id="warnings"></ul></details>
+      <nav class="view-switch" aria-label="Journalvisning"><button id="journal-view" type="button" aria-pressed="true" aria-controls="journal-panel">Forløbsjournal</button><button id="diagnosis-view" type="button" aria-pressed="false" aria-controls="diagnosis-panel">Patientens diagnoseoverblik</button></nav>
+      <section id="diagnosis-panel" class="diagnosis-panel" aria-labelledby="diagnosis-title" hidden>
+        <div class="diagnosis-heading"><div><p class="eyebrow">PÅ TVÆRS AF PATIENTENS FORLØB</p><h2 id="diagnosis-title">Sygdomme og registrerede diagnoser</h2><p class="muted">Samme diagnosekode samles på tværs af forløb. Aktionsdiagnoser fremhæves og grupperes efter kodeområde.</p></div><span class="badge unknown">Klinisk status ikke oplyst</span></div>
+        <details class="view-explanation"><summary>Om datoer og diagnosegrundlag</summary><p>Sidst identificeret viser den seneste DatoFra blandt registreringer med samme kode. Datoen angiver en registrering i kilden; sygdommens debut, bekræftelse og aktuelle aktivitet er ikke oplyst. Kontaktårsager og symptomer vises særskilt fra sygdomme og tilstande.</p></details>
+        <div id="diagnosis-stats" class="diagnosis-stats" aria-label="Diagnoseoptællinger"></div>
+        <div class="diagnosis-controls"><div><label for="diagnosis-search">Søg i diagnoser</label><input id="diagnosis-search" type="search" placeholder="Diagnose, kode eller afdeling…" autocomplete="off"></div><div><label for="diagnosis-chapter">Diagnoseområde</label><select id="diagnosis-chapter"><option value="all">Alle områder</option></select></div></div>
+        <div id="diagnosis-roles" class="filters" role="group" aria-label="Filtrér diagnoseart"></div>
+        <p id="diagnosis-result-count" class="diagnosis-result-count" role="status" aria-live="polite"></p>
+        <div id="diagnosis-groups" class="diagnosis-groups"></div>
+      </section>
+      <div id="journal-panel">
+      <div id="journal-workspace" class="workspace">
+        <aside class="episode-panel" aria-label="Forløbsoversigt">
+          <div class="panel-title"><h2>Forløbsoversigt</h2><span id="episode-count" class="count"></span></div>
+          <label for="search" class="sr-only">Find forløb via diagnose, afdeling eller indhold</label><input id="search" class="search" type="search" placeholder="Find diagnose eller forløb…" autocomplete="off">
+          <p class="episode-panel-hint">Senest opdaterede først · år følger opdateringsdatoen</p>
+          <div id="episode-shortcuts" class="episode-shortcuts" aria-label="Patientoplysninger"></div>
+          <div class="episode-content-legend" aria-label="Ikoner for hentet indhold">
+            <span><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M8 3h8v5h5v8h-5v5H8v-5H3V8h5z"/></svg>Diagnoser</span>
+            <span><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="6" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg>Kontakter</span>
+            <span><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 12h5l3-8 4 16 3-8h5"/></svg>Procedurer</span>
+            <span><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 3h10l4 4v14H5zM8 12h8M8 16h5"/></svg>Notater</span>
+            <span><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 3h10l4 4v14H5zM8 11h8M8 15h5M14 19h7M18 16l3 3-3 3"/></svg>Epikriser</span>
+          </div>
+          <div class="episode-browser">
+            <div class="episode-year-rail"><span class="year-rail-heading">ÅR</span><nav id="episode-years" class="episode-years" aria-label="Hop til opdateringsår. Bjælker viser antal hentede poster."></nav></div>
+            <div id="episodes" class="episodes" tabindex="0" aria-label="Scroll i patientens forløb"></div>
+          </div>
+        </aside>
+        <section id="detail-panel" class="detail-panel" aria-labelledby="detail-title">
+          <div class="detail-navigation"><button id="return-overview" class="return-overview" type="button" hidden>← Tilbage til journaloverblikket</button></div>
+          <div class="detail-heading"><div><p id="detail-eyebrow" class="eyebrow">FORLØBSJOURNAL</p><h2 id="detail-title" tabindex="-1">Vælg et forløb</h2><p id="detail-subtitle" class="muted"></p></div><button id="episode-json" class="text-button" type="button" hidden>Se forløbets FHIR ↗</button></div>
+          <div id="episode-context" class="episode-context"></div>
+          <div id="filters" class="filters" role="group" aria-label="Filtrér oplysninger"></div>
+          <div id="detail-search-control" class="detail-search-control"><label for="detail-search" class="sr-only">Søg i det valgte forløbs oplysninger</label><input id="detail-search" type="search" placeholder="Søg i dette forløbs oplysninger…" autocomplete="off"></div>
+          <div id="detail-panel-body" class="detail-panel-body" tabindex="0" role="region" aria-labelledby="detail-title"><div id="resources" class="resources"></div></div>
+        </section>
+      </div>
+      </div>
+      <footer class="footer"><span>Kilde: sdk-api-demo · hentet over HTTP</span><span>FHIR R4 / 4.0.1 · Collection Bundle</span></footer>
+    </section>
+  </main>
+  <dialog id="inspector" aria-labelledby="inspector-title"><div class="dialog-header"><div><p class="eyebrow">FHIR R4 · RESSOURCE</p><h2 id="inspector-title"></h2></div><button id="close-inspector" type="button" class="secondary">Luk ×</button></div><pre id="json"></pre></dialog>
+  <dialog id="reader" aria-labelledby="reader-title"><div class="dialog-header"><div><p class="eyebrow">KILDEOPLYSNINGER</p><h2 id="reader-title"></h2></div><button id="close-reader" type="button" class="secondary">Luk ×</button></div><div id="reader-content" class="reader-content"></div></dialog>
+</body>
+</html>
