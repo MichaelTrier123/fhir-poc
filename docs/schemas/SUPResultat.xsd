@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.medcom.dk/SUP_30" xmlns="http://www.medcom.dk/SUP_30" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:include schemaLocation="SUPTyper.xsd"/>
+	<xsd:include schemaLocation="SUPKlassifikation.xsd"/>
+	<xsd:include schemaLocation="SUPOrganisation.xsd"/>
+	<xsd:include schemaLocation="SUPBehandlere.xsd"/>
+	<xsd:include schemaLocation="SUPFaellesAttributter.xsd"/>
+	<xsd:include schemaLocation="SUPHaendelse.xsd"/>
+	<!-- ====================== Pakke: Resultat  ============================== -->
+	<xsd:element name="Anamnestisk_oplysning">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Haendelse"/>
+				<xsd:element ref="Art"/>
+				<xsd:element ref="AnamnestiskOplysning"/>
+				<xsd:element ref="Us_procedure"/>
+				<xsd:element ref="Anamnestisk_oplysning_konstanteret_af"/>
+				<xsd:element ref="Procedure_hvor_oplysning_blev_givet" minOccurs="0"/>
+			</xsd:sequence>
+			<xsd:attribute name="Konstateringstidspunkt" type="SUPdateTime" use="required"/>
+			<xsd:attribute name="AnamnestiskTidspunkt" type="SUPdateTime" use="optional"/>
+			<xsd:attribute name="Periode" type="xsd:string" use="optional"/>
+			<xsd:attribute name="EnhedPeriode" type="xsd:string" use="optional"/>
+			<xsd:attribute name="Varighed" type="xsd:string" use="optional"/>
+			<xsd:attribute name="EnhedVarighed" type="xsd:string" use="optional"/>
+			<xsd:attribute name="Objektreference" type="xsd:anyURI" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Anamnestisk_oplysning_konstanteret_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Konstaterende_Behandler" minOccurs="0"/>
+				<xsd:element ref="Konstaterende_Enhed"/>
+			</xsd:sequence>
+			<xsd:attribute name="Observationssted" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Procedure_hvor_oplysning_blev_givet">
+		<xsd:complexType>
+			<xsd:attribute name="Procedure_identifikation" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Observation_fund">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Haendelse"/>
+				<xsd:element ref="Observationskode"/>
+				<xsd:element ref="Undersoegelsesprocedure" minOccurs="0"/>
+				<xsd:element ref="Udloesende_procedure" minOccurs="0"/>
+				<xsd:element ref="Observation_fund_observeret_af"/>
+			</xsd:sequence>
+			<xsd:attribute name="Vaerdi" type="xsd:string" use="optional"/>
+			<xsd:attribute name="EnhedVaerdi" type="xsd:string" use="optional"/>
+			<xsd:attribute name="ObservationsTidspunkt" type="SUPdateTime" use="required"/>
+			<xsd:attribute name="SystBT" type="xsd:string" use="optional"/>
+			<xsd:attribute name="SystBTEnhed" type="xsd:string" use="optional"/>
+			<xsd:attribute name="DiasBT" type="xsd:string" use="optional"/>
+			<xsd:attribute name="DiasBTEnhed" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Observation_fund_observeret_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Observerende_Behandler" minOccurs="0"/>
+				<xsd:element ref="Observerende_Enhed"/>
+			</xsd:sequence>
+			<xsd:attribute name="Observationssted" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Observationskode">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="SammensatKodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Undersoegelsesprocedure">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="KodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Udloesende_procedure">
+		<xsd:complexType>
+			<xsd:attribute name="Procedure_identifikation" type="xsd:string" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Proeveresultat">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Haendelse"/>
+				<xsd:element ref="Resultat"/>
+				<xsd:element ref="Us_procedure" minOccurs="0"/>
+				<xsd:element ref="Anatomisk_Lokalisation" minOccurs="0"/>
+				<xsd:element ref="Morfologi" minOccurs="0"/>
+				<xsd:element ref="Proeveresultat_til_procedure" minOccurs="0"/>
+				<xsd:element ref="Proeveresultat_rekvireret_af" minOccurs="0"/>
+				<xsd:element ref="Proeveresultat_produceret_af"/>
+			</xsd:sequence>
+			<xsd:attribute name="Proevetidspunkt" type="SUPdateTime" use="required"/>
+			<xsd:attribute name="Svartidspunkt" type="SUPdateTime" use="optional"/>
+			<xsd:attribute name="ResultatVaerdi" type="xsd:string" use="optional"/>
+			<xsd:attribute name="EnhedResultatVaerdi" type="xsd:string" use="optional"/>
+			<xsd:attribute name="NedreGraense" type="xsd:string" use="optional"/>
+			<xsd:attribute name="EnhedNedreGraense" type="xsd:string" use="optional"/>
+			<xsd:attribute name="OevreGraense" type="xsd:string" use="optional"/>
+			<xsd:attribute name="EnhedOevreGraense" type="xsd:string" use="optional"/>
+			<xsd:attribute name="Unormalt_resultat" use="optional">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="*"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+			<xsd:attribute name="Objektreference" type="xsd:anyURI" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Proeveresultat_til_procedure">
+		<xsd:complexType>
+			<xsd:attribute name="Procedure_identifikation" type="xsd:string" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Proeveresultat_rekvireret_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Rekvirerende_Behandler" minOccurs="0"/>
+				<xsd:element ref="Rekvirerende_Enhed"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Proeveresultat_produceret_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Producerende_Behandler" minOccurs="0"/>
+				<xsd:element ref="Producerende_Enhed"/>
+			</xsd:sequence>
+			<xsd:attribute name="ProcedureSted" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Anatomisk_Lokalisation">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="KodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Morfologi">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="KodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="AnamnestiskOplysning">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="SammensatKodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

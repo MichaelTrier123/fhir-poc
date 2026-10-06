@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.medcom.dk/SUP_30" xmlns="http://www.medcom.dk/SUP_30" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<!-- ====================== Pakke: Klassifikation  ============================== -->
+	<xsd:element name="Klassifikation">
+		<xsd:complexType>
+			<xsd:attribute name="Forkortelse" type="xsd:string" use="optional"/>
+			<xsd:attribute name="Navn" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Klassificering">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Klassifikation"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="KodetVaerdi">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Klassificering"/>
+			</xsd:sequence>
+			<xsd:attribute name="Kode" type="xsd:string" use="optional"/>
+			<xsd:attribute name="Kodetekst" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Primaerkode">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="KodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="SammensatKodetVaerdi">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Primaerkode"/>
+				<xsd:element ref="Tillaegskode" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Tillaegskode">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="KodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.medcom.dk/SUP_30" xmlns="http://www.medcom.dk/SUP_30" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:include schemaLocation="SUPTyper.xsd"/>
+	<xsd:include schemaLocation="SUPOrganisation.xsd"/>
+	<xsd:include schemaLocation="SUPFaellesAttributter.xsd"/>
+	<!-- ====================== Pakke: Hændelse ============================== -->
+	<xsd:element name="Haendelse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="HaendelseRegistreretAf"/>
+				<xsd:element ref="Sikkerhedskode" minOccurs="0"/>
+			</xsd:sequence>
+			<xsd:attribute name="Identifikation" type="xsd:string" use="required"/>
+			<xsd:attribute name="FriTekst" type="xsd:string" use="optional"/>
+			<xsd:attribute name="Registreringstidspunkt" type="SUPdateTime" use="optional"/>
+			<xsd:attribute name="Tilstede_tidspunkt" type="SUPdateTime" use="optional"/>
+			<xsd:attribute name="Ugyldighedstidspunkt" type="SUPdateTime" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="HaendelseRegistreretAf">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Registrerings_Enhed"/>
+			</xsd:sequence>
+			<xsd:attribute name="Registrerende_behandler" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Sikkerhedskode">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="KodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

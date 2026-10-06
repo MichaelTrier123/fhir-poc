@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>SUP → FHIR · Mappingatlas</title>
+  <style>
+    :root {
+      --ink: #163047;
+      --ink-soft: #4c6478;
+      --deep: #102b3d;
+      --deep-2: #173a4d;
+      --teal: #0d8177;
+      --teal-soft: #def3ef;
+      --amber: #9a5a14;
+      --amber-soft: #fff3db;
+      --paper: #f4f7f8;
+      --panel: #ffffff;
+      --line: #d9e3e8;
+      --line-strong: #b8cad2;
+      --shadow: 0 12px 36px rgba(20, 52, 68, .09);
+      font-family: "Segoe UI", Inter, system-ui, -apple-system, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-width: 320px; }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    a { color: inherit; }
+    .topbar {
+      color: #fff;
+      background: radial-gradient(circle at 80% -45%, #246f77 0, transparent 42%), linear-gradient(115deg, var(--deep), var(--deep-2));
+      padding: 25px clamp(20px, 4vw, 60px) 31px;
+      border-bottom: 4px solid #2ab6a3;
+    }
+    .topline { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .eyebrow { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 750; color: #8de0d3; }
+    .report-link { font-size: .82rem; color: #e0f4f0; text-decoration: none; border-bottom: 1px solid #84c7bf; padding-bottom: 3px; }
+    .report-link:hover { color: #fff; border-color: #fff; }
+    .hero { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-top: 10px; }
+    h1 { font-size: clamp(2rem, 3.4vw, 3.2rem); line-height: 1.08; letter-spacing: -.04em; margin: 7px 0 9px; }
+    .subtitle { color: #d1e6e8; max-width: 780px; margin: 0; line-height: 1.5; font-size: .95rem; }
+    .hero-count { flex: none; color: #d9f1ef; border: 1px solid #4a8190; border-radius: 999px; padding: 10px 15px; font-size: .78rem; white-space: nowrap; }
+    .hero-count strong { color: #fff; font-size: 1rem; }
+    .toolbar { max-width: 1630px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px clamp(20px, 4vw, 60px) 8px; }
+    .intro { color: var(--ink-soft); font-size: .86rem; line-height: 1.45; }
+    .searchbox { position: relative; width: min(420px, 100%); flex: none; }
+    .searchbox svg { position: absolute; width: 18px; height: 18px; left: 14px; top: 13px; stroke: #748b9a; pointer-events: none; }
+    .searchbox input { border: 1px solid var(--line-strong); outline: none; border-radius: 12px; width: 100%; padding: 11px 14px 11px 42px; background: #fff; color: var(--ink); box-shadow: 0 2px 9px rgba(15, 50, 60, .04); }
+    .searchbox input:focus { border-color: var(--teal); box-shadow: 0 0 0 3px #b8e9df; }
+    .layout { max-width: 1630px; margin: 0 auto; display: grid; grid-template-columns: minmax(600px, 1.18fr) minmax(390px, .82fr); gap: 18px; padding: 8px clamp(20px, 4vw, 60px) 38px; align-items: start; }
+    .panel { background: var(--panel); border: 1px solid var(--line); box-shadow: var(--shadow); border-radius: 18px; min-width: 0; }
+    .diagram-panel { padding: 22px 24px 21px; overflow: hidden; }
+    .panel-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+    h2 { font-size: 1.08rem; margin: 0; letter-spacing: -.015em; }
+    .panel-note { font-size: .76rem; color: var(--ink-soft); margin: 0; }
+    .diagram-key { display: flex; gap: 16px; color: var(--ink-soft); font-size: .75rem; margin-top: 10px; flex-wrap: wrap; }
+    .key-dot { display: inline-block; width: 8px; height: 8px; background: var(--teal); border-radius: 50%; margin-right: 6px; }
+    .key-dot.other { background: #a7bec8; }
+    .diagram-scroll { overflow-x: auto; padding-bottom: 3px; }
+    .diagram-stage { min-width: 500px; position: relative; padding: 21px 5px 7px; }
+    .links { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: visible; }
+    .links path { fill: none; stroke: #b7cad2; stroke-width: 2.2; }
+    .links path.active { stroke: #19a695; stroke-width: 3; }
+    .tier { display: grid; position: relative; z-index: 1; gap: 13px; }
+    .tier + .tier { margin-top: 48px; }
+    .tier-root, .tier-person { grid-template-columns: 1fr; place-items: center; }
+    .tier-branch { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 19px; }
+    .tier-events { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 19px; margin-top: 51px !important; }
+    .node { text-align: left; border: 1px solid #cbd9df; color: var(--ink); background: #fff; border-radius: 14px; padding: 14px 16px 13px; width: 100%; min-height: 111px; position: relative; box-shadow: 0 3px 12px rgba(18, 58, 71, .04); transition: border-color .14s, box-shadow .14s, transform .14s; }
+    .tier-root .node, .tier-person .node { width: min(100%, 292px); }
+    .node:hover { border-color: #4fb9ac; transform: translateY(-2px); box-shadow: 0 8px 18px rgba(18, 70, 77, .10); }
+    .node:focus-visible { outline: 3px solid #70d8cb; outline-offset: 3px; }
+    .node.selected { border: 2px solid var(--teal); padding: 13px 15px 12px; box-shadow: 0 0 0 4px #d2f0ea, 0 10px 21px rgba(18, 70, 77, .10); }
+    .node.related:not(.selected) { border-color: #75c3b8; }
+    .node-kind { color: var(--teal); font-size: .63rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+    .node-title { display: block; font-size: .96rem; font-weight: 780; margin-top: 6px; overflow-wrap: anywhere; }
+    .node-target { display: block; color: var(--ink-soft); font-size: .75rem; margin-top: 5px; line-height: 1.25; }
+    .node-target::before { content: "→ "; color: var(--teal); font-weight: 800; }
+    .node-count { position: absolute; right: 14px; top: 14px; font-size: .68rem; color: #557181; background: #edf4f5; border-radius: 999px; padding: 3px 8px; }
+    .shared-bar { display: flex; justify-content: space-between; gap: 16px; align-items: center; border-top: 1px solid var(--line); margin-top: 18px; padding-top: 17px; }
+    .shared-copy { font-size: .78rem; color: var(--ink-soft); line-height: 1.4; }
+    .text-button { border: 0; background: transparent; color: #0c766d; font-weight: 750; padding: 8px 0; text-align: left; text-decoration: underline; text-underline-offset: 3px; }
+    .text-button:hover { color: #064f49; }
+    .detail-panel { overflow: hidden; position: sticky; top: 16px; }
+    .detail-head { padding: 23px 24px 20px; border-bottom: 1px solid var(--line); }
+    .detail-kicker { color: var(--teal); font-size: .7rem; font-weight: 800; text-transform: uppercase; letter-spacing: .12em; }
+    .detail-title { font-size: 1.55rem; letter-spacing: -.025em; margin: 5px 0 9px; line-height: 1.15; overflow-wrap: anywhere; }
+    .fhir-target { display: inline-flex; gap: 6px; align-items: baseline; background: var(--teal-soft); color: #0d665e; border-radius: 8px; padding: 6px 9px; font-size: .78rem; font-weight: 700; }
+    .fhir-target span { color: #416d69; font-weight: 500; }
+    .detail-meta { color: var(--ink-soft); font-size: .73rem; line-height: 1.45; margin-top: 12px; overflow-wrap: anywhere; }
+    .issue-callout { margin-top: 16px; padding: 12px 14px; border-left: 3px solid #dc9b3c; border-radius: 0 9px 9px 0; background: var(--amber-soft); color: #684617; font-size: .82rem; line-height: 1.45; }
+    .issue-callout strong { display: block; color: var(--amber); font-size: .68rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 3px; }
+    .field-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; padding: 16px 24px 10px; }
+    .field-head h3 { margin: 0; font-size: .93rem; }
+    .field-head span { color: var(--ink-soft); font-size: .73rem; }
+    .fields { max-height: min(58vh, 660px); overflow: auto; border-top: 1px solid var(--line); }
+    .field-row { padding: 13px 24px 15px; border-bottom: 1px solid #e7eef0; scroll-margin-top: 10px; }
+    .field-row:last-child { border-bottom: 0; }
+    .field-row.emphasis { background: #eaf8f5; }
+    .source-line { display: flex; gap: 11px; align-items: baseline; }
+    .index { color: #8ba0aa; font-size: .68rem; font-variant-numeric: tabular-nums; min-width: 20px; }
+    .source-name { color: #123e52; font-weight: 750; font-size: .80rem; overflow-wrap: anywhere; }
+    .field-line { margin: 7px 0 0 31px; line-height: 1.43; font-size: .78rem; }
+    .field-line b { color: #597486; font-size: .68rem; letter-spacing: .02em; margin-right: 5px; }
+    .field-line.problem { color: #754e20; }
+    .field-line.problem b { color: #9a5a14; }
+    code { font-family: Consolas, "Cascadia Code", ui-monospace, monospace; background: #eef3f5; color: #1e5a68; border-radius: 4px; padding: 1px 3px; font-size: .95em; overflow-wrap: anywhere; }
+    .search-results { max-height: min(68vh, 780px); overflow: auto; }
+    .result { width: 100%; text-align: left; background: #fff; border: 0; border-bottom: 1px solid var(--line); padding: 13px 24px; display: block; }
+    .result:hover { background: #eff8f6; }
+    .result strong { display: block; color: #143c50; font-size: .82rem; }
+    .result small { display: block; color: var(--teal); font-size: .69rem; margin: 3px 0 4px; }
+    .result span { display: block; color: var(--ink-soft); font-size: .75rem; line-height: 1.4; }
+    .empty { padding: 26px; color: var(--ink-soft); font-size: .84rem; line-height: 1.5; }
+    .footnote { max-width: 1630px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 60px) 35px; color: #617989; font-size: .76rem; line-height: 1.55; }
+    @media (max-width: 1120px) {
+      .layout { grid-template-columns: 1fr; }
+      .detail-panel { position: static; }
+      .fields, .search-results { max-height: none; }
+    }
+    @media (max-width: 700px) {
+      .topbar { padding: 21px 20px 25px; }
+      .hero { display: block; }
+      .hero-count { display: inline-block; margin-top: 16px; }
+      .toolbar { display: block; padding: 18px 15px 8px; }
+      .searchbox { width: 100%; margin-top: 13px; }
+      .layout { padding: 8px 15px 24px; }
+      .diagram-panel { padding: 18px 16px; }
+      .panel-note { display: none; }
+      .diagram-stage { min-width: 0; }
+      .tier-branch, .tier-events { grid-template-columns: 1fr; }
+      .shared-bar { display: block; }
+      .shared-copy { margin-top: 5px; }
+      .detail-head { padding: 19px; }
+      .field-head { padding: 15px 19px 10px; }
+      .field-row { padding: 13px 19px; }
+      .result { padding: 13px 19px; }
+      .footnote { padding: 0 18px 28px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topline">
+      <div class="eyebrow">Fagligt mappingatlas · SUP 3.0 / FHIR R4</div>
+      <a class="report-link" href="sup_til_fhir_lpr3_mappingrapport.md">Åbn den samlede rapport ↗</a>
+    </div>
+    <div class="hero">
+      <div>
+        <h1>Fra SUP til FHIR</h1>
+        <p class="subtitle">Klik gennem klasser og felter. Se, hvad der kan overføres, og hvor LPR3-begreber eller kildeoplysninger kræver afklaring.</p>
+      </div>
+      <div class="hero-count" id="hero-count"></div>
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <div class="intro">Vælg en klasse i diagrammet for at se dens felter. Fælles hændelsesfelter ligger under diagrammet.</div>
+    <label class="searchbox">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>
+      <input id="search" type="search" placeholder="Søg i alle SUP-felter og problemstillinger" aria-label="Søg i alle SUP-felter og problemstillinger">
+    </label>
+  </div>
+
+  <main class="layout">
+    <section class="panel diagram-panel" aria-label="SUP-klassernes relationer">
+      <div class="panel-heading"><h2>SUP-struktur</h2><p class="panel-note">Vælg en klasse i diagrammet</p></div>
+      <div class="diagram-key"><span><i class="key-dot"></i>Valgt klasse og relation</span><span><i class="key-dot other"></i>Andre SUP-relationer</span></div>
+      <div class="diagram-scroll">
+        <div class="diagram-stage" id="stage">
+          <svg class="links" id="links" aria-hidden="true"></svg>
+          <div class="tier tier-root" id="tier-root"></div>
+          <div class="tier tier-person" id="tier-person"></div>
+          <div class="tier tier-branch" id="tier-branch"></div>
+          <div class="tier tier-events" id="tier-events"></div>
+        </div>
+      </div>
+      <div class="shared-bar">
+        <button class="text-button" id="shared-button" type="button">Fælles <code>Haendelse</code>-felter →</button>
+        <span class="shared-copy">ID, registrering, ugyldighed og registrerende enhed går igen i kontakt, notat, procedure og diagnose.</span>
+      </div>
+    </section>
+
+    <section class="panel detail-panel" id="detail-panel" aria-live="polite" aria-label="Valgt klasses mapping"></section>
+  </main>
+
+  <footer class="footnote">Visningen bygger på mappingrapportens 90 feltrækker. XSD beskriver SUP-strukturen; JSON-eksemplerne er ikke dokumentation for en fuld SUP→JSON-transformation. Diagrammet viser derfor kandidater og konkrete forbehold, ikke en valideret LPR3-indberetning.</footer>
+
+  <script>
+    const MAPPING_DATA = {"title":"SUP → FHIR med LPR3-understøttelse","sourceReport":"sup_til_fhir_lpr3_mappingrapport.md","sourceVersion":"1.1 · 6. oktober 2026","nodes":[{"id":"Aflever_patientdata","parent":null,"fhir":"Udtræks- og proveniensmetadata","xsd":"SUPAfleverPatientdataService.xsd · SUPFaellesAttributter.xsd","issue":"Udtræks-ID og transaktionstype beskriver dataoverførslen, ikke patientens kliniske tilstand.","kind":"envelope","fields":[{"source":"`Person` (påkrævet)","target":"Indgang til én `Patient` og de tilknyttede data.","issue":"SUP har én Person pr. udtræk; patientidentiteten vurderes særskilt i næste tabel."},{"source":"`@VersionsNummer` (påkrævet; 2.0–3.0)","target":"Bevar som skema-/meddelelsesversion. Ikke `Patient.meta.versionId`.","issue":"Versionsnummeret beskriver SUP-formatet, ikke en version af patientens FHIR-ressource."},{"source":"`@Identifikation` (påkrævet)","target":"Unikt ID for patientdataudtræk; bevar som meddelelses-ID.","issue":"Dette ID gælder udtrækket og må ikke bruges som patient- eller forløbs-ID."},{"source":"`@ForsendelsesTid` (påkrævet)","target":"Afsendelsestid for udtræk; ikke klinisk observationstid.","issue":"Forsendelsestidspunktet kan ligge længe efter de kliniske hændelser."},{"source":"`@AfsenderSystem` (påkrævet)","target":"Systemproveniens. Kan senere indgå i `Provenance.agent`, hvis provenance-modellen etableres.","issue":"Afsendersystemets identitet og rolle skal beskrives, før det kan blive en Provenance-aktør."},{"source":"`@TransaktionsType` (påkrævet: `Opdater`, `OpdaterSpecielt`, `Slet`, `SletSpecielt`)","target":"Synkroniseringsinstruktion; kræver selvstændige regler for opdatering/sletning. Må ikke oversættes direkte til klinisk status.","issue":"Opdatering og sletning kræver egne synkroniseringsregler; de siger intet om klinisk status."}]},{"id":"Person","parent":"Aflever_patientdata","fhir":"Patient","xsd":"SUPAfleverPatientdataService.xsd · SUPFaellesAttributter.xsd","issue":"CPR er kun en streng i XSD; identitet og historik skal verificeres.","kind":"person","fields":[{"source":"`@CPRnummer` (påkrævet)","target":"`Patient.identifier` med korrekt dansk CPR-identifikatorsystem og DK Core-regler. Valider CPR-format og håndter erstatningsnumre/ændret CPR særskilt; XSD garanterer kun en streng.","issue":"XSD kræver kun en streng; CPR-gyldighed, erstatningsnumre og ændret CPR skal kontrolleres særskilt."},{"source":"`@Navn`","target":"`Patient.name.text` som sikker tekstlig repræsentation; opdeling i for-/efternavn kræver pålidelig parsing.","issue":"Navnet kan bevares som tekst; sikker opdeling i navnekomponenter kræver mere struktur."},{"source":"`@Adresse`","target":"`Patient.address.text`; struktureret adresse kun hvis delene er kendte.","issue":"Adressen kan bevares som tekst; vej, nummer, postnummer m.m. kan ikke udledes sikkert."},{"source":"`@Kommunekode`, `@Kommune`","target":"Bopælskommune og tekst; behold eventuelt som del af verificeret adresse-/kommunekontekst. Ingen sikker standardplacering for historisk kommunefelt uden profilbeslutning.","issue":"Kommunekode og kommunenavn kræver verificering af betydning og historik før struktureret placering."},{"source":"`@KommuneTilflytningsdato`","target":"Historik om bopælskommune; ikke automatisk `Patient.address.period.start`, da periodens rækkevidde er uklar.","issue":"Tilflytning til kommunen er ikke nødvendigvis start på den konkrete adresse."},{"source":"`@Koen` (`M`,`K`,`U`)","target":"`Patient.gender` kan først fastlægges, når SUP-feltets betydning er verificeret mod FHIR administrative gender og DK Core. `U` må ikke gættes til en bestemt kønsoplysning.","issue":"Betydningen af M, K og U skal verificeres mod FHIR og DK Core; U må ikke fortolkes ved gæt."},{"source":"`@Foedselsdato`","target":"`Patient.birthDate`, hvis datoen er reel og gyldig; mangelsymboler udelades.","issue":"Kun en gyldig dato kan bruges; SUP-mangelsymboler er ikke FHIR-datoer."},{"source":"`@TelefonNummer`","target":"`Patient.telecom` (`system=phone`), hvis værdien er et telefonnummer.","issue":"Kontrollér at værdien er et telefonnummer; XSD validerer hverken format eller landekode."},{"source":"`@Paaroerende`","target":"Kan blive `RelatedPerson` eller kontaktoplysning, men én fri tekststreng giver ikke nødvendigvis identitet, relation eller kontaktdata. Bevar råt indtil afklaring.","issue":"En fri tekst kan mangle både relationstype, identitet og kontaktoplysninger om den pårørende."},{"source":"`@EgenLaegesNavn`, `@EgenLaegesYdernr`, `@EgenLaegeStartDato`","target":"Mulig `Patient.generalPractitioner` til identificeret læge/organisation; navn og ydernummer skal afstemmes, og startdato er ikke et direkte felt på referencen.","issue":"Navn og ydernummer skal pege på samme læge; startdatoen har ingen direkte plads i referencen."},{"source":"`Patientforloeb*`, `CaveOplysninger*`","target":"Relationer til ressourcerne nedenfor. Fravær af `CaveOplysninger` betyder ukendt, ikke “ingen allergier”.","issue":"Elementernes placering under `Person` viser patientrelationen; en tom caveliste siger intet sikkert om allergier."}]},{"id":"CaveOplysninger","parent":"Person","fhir":"Flag · evt. AllergyIntolerance","xsd":"SUPFaellesAttributter.xsd","issue":"Friteksten angiver ikke sikkert allergi, og status findes ikke i XSD.","kind":"cave","fields":[{"source":"`@Tekst` (påkrævet)","target":"`Flag.code.text` for en faktisk advarsel; klinisk kategorisering kræver gennemgang af teksten.","issue":"Teksten kan beskrive allergi, anden risiko eller administrativ advarsel; typen skal vurderes."},{"source":"`@Dato` (valgfri streng)","target":"Potentiel `Flag.period.start`, men kun hvis datoens betydning og format er kendt.","issue":"Dato er en fri streng, og XSD fortæller ikke, om den er oprettelses- eller startdato."},{"source":"`Organisatorisk_Enhed` (valgfri)","target":"Kilde-/ansvarlig organisation; relationen til `Flag.author` kræver semantisk kontrol.","issue":"Enheden kan være kilde eller ansvarlig; det er uklart, om den er FHIR-forfatter."},{"source":"Status/aktivitet","target":"**Findes ikke i XSD.** FHIR `Flag.status` kan ikke udfyldes alene fra SUP-skemaet.","issue":"SUP-XSD har ingen aktiv/inaktiv-værdi; den påkrævede FHIR-status kræver en anden kilde."}]},{"id":"Patientforloeb","parent":"Person","fhir":"EpisodeOfCare-kandidat","xsd":"SUPPatientforloeb.xsd","issue":"SUP-forløbet er ikke nødvendigvis ét LPR3-forløbselement; label og startmarkør mangler.","kind":"course","fields":[{"source":"`@Identifikation` (påkrævet)","target":"`EpisodeOfCare.identifier` med entydigt kildesystem.","issue":"Kilde-ID skal kombineres med fødesystemet for at undgå sammenfald mellem systemer."},{"source":"`OprindeligAnsvarligEnhed/Organisatorisk_Enhed` (påkrævet)","target":"Potentiel `EpisodeOfCare.managingOrganization`; “oprindelig” ansvarlig er ikke nødvendigvis nuværende LPR3-forløbsansvar.","issue":"Oprindeligt ansvar er ikke nødvendigvis aktuelt LPR3-forløbsansvar eller verificeret SOR-enhed."},{"source":"`@Starttidspunkt`, `@Sluttidspunkt`","target":"`EpisodeOfCare.period.start/end`, når værdierne er gyldige; slut mangler naturligt for åbne forløb.","issue":"SUP tillader manglende starttid; LPR3 kræver start for et nyt forløbselement."},{"source":"`@SammenknytningsIdentifikation`","target":"XSD-dokumentationen beskriver ID på hovedforløbet for et LPR3-underforløb. Bevar eksplicit relation og opløs den til kildeforløb; `EpisodeOfCare` har ikke et enkelt standardfelt for netop denne hoved-/underforløbsrelation.","issue":"Hoved-/underforløbsrelationen har ikke et enkelt tilsvarende EpisodeOfCare-felt."},{"source":"`@Teknisk_forloeb=\"X\"`","target":"Marker forløbet som teknisk kildebeholder. Må ikke automatisk tælles som selvstændigt LPR3-forløbselement.","issue":"Et teknisk forløb kan samle løse hændelser og må ikke automatisk blive et LPR3-forløbselement."},{"source":"`@Foedesystem` (påkrævet)","target":"Kilde-/ID-namespace og proveniens; hjælper med at undgå ID-kollision.","issue":"Fødesystemet skal bruges som kildemetadata og del af ID-namespace, ikke som klinisk oplysning."},{"source":"`@Udtraekstidspunkt`","target":"Udtrækstid, ikke `EpisodeOfCare.period` eller klinisk afslutning.","issue":"Udtrækstidspunktet beskriver dataoverførslen og ikke forløbets tidsramme."},{"source":"`Kontaktperiode`, `Notat`, `Udfoert_procedure`, `Diagnose`","target":"Hændelser under kildeforløbet. Opret kun de FHIR-referencer, som den konkrete relation understøtter.","issue":"SUP-tilknytning til forløb dokumenterer ikke i sig selv relationer mellem hændelser og kontakter."},{"source":"Forløbsstatus, forløbslabel, startmarkør, afslutningsmåde, eventuel referencetype","target":"Ikke dedikerede felter i dette XSD-element. Kan ikke rekonstrueres sikkert uden andre SUP-klasser/kodeværker eller upstream-data.","issue":"Forløbsstatus, label, startmarkør m.m. kræver yderligere data; FHIR- og LPR3-dækning er derfor ufuldstændig."}]},{"id":"Kontaktperiode","parent":"Patientforloeb","fhir":"Encounter","xsd":"SUPKontaktperiode.xsd","issue":"Forløbsstatus kan ikke uden videre blive både FHIR-status og LPR3-kontakttype.","kind":"event","fields":[{"source":"`Haendelse` (påkrævet)","target":"Fælles hændelsesregler i §3; kilde-ID → `Encounter.identifier`.","issue":"ID kan bevares; øvrige Haendelse-felter kræver de fælles fortolkninger i §3."},{"source":"`@StartTidspunkt` (påkrævet), `@Afslutningstidspunkt`","target":"`Encounter.period.start/end` ved gyldige datoer. Afslutningstidspunkt alene beviser ikke `Encounter.status=finished`, før kildens livscyklusregler er kendt.","issue":"Tiderne kan overføres, men slutdato alene fastslår ikke Encounter-livscyklusstatus."},{"source":"`ForloebsStatus/KodetVaerdi` (påkrævet)","target":"Kildekode skal fortolkes med sin klassifikation. Kan dække kontakttype/administrativ status; ingen universel mapping til `Encounter.status`, `class` og LPR3-kontakttype.","issue":"Kodeværket er ukendt, og feltet kan ikke bruges ens til status, klasse og LPR3-kontakttype."},{"source":"`Indikation/KodetVaerdi`","target":"Potentiel kontaktårsag (`Encounter.reasonCode`) efter kode-/semantikkontrol.","issue":"Det skal bekræftes, at koden beskriver årsagen til netop denne kontakt."},{"source":"`Prioritet/KodetVaerdi`","target":"`Encounter.priority` hvis den er **kontaktens** akut-/planlagt-prioritet; krydswalk til DK Core-kodeværdi skal verificeres.","issue":"Kontrollér at dette er kontaktprioritet, og verificér krydswalk til dansk FHIR-kodeværk."},{"source":"`AfslutningsAarsag/KodetVaerdi`","target":"Mulig `Encounter.hospitalization.dischargeDisposition` i relevante tilfælde; “afslutningsårsag” er bredere, så ingen generel regel.","issue":"En generel afslutningsårsag er ikke nødvendigvis en udskrivningsdisposition."},{"source":"`Laegelig_Ansvarlig_for_kontaktperiode/Laegelig_kontaktansvarlig_Enhed` (påkrævet)","target":"`Encounter.serviceProvider` hvis dette faktisk er kontaktansvarlig enhed; kontrollér SOR-ID.","issue":"Rollen som kontaktansvarlig og en eventuel SOR-kode skal kontrolleres."},{"source":"`Laegelig_Ansvarlig_for_kontaktperiode/Laegelig_ansvarlig_behandler` (valgfri)","target":"`Encounter.participant.individual` med rolle/tid, hvis person kan identificeres.","issue":"Behandlerens ID, deltagelsesrolle og eventuelle tidsperiode mangler eller skal verificeres."},{"source":"`Laegelig_Ansvarlig_for_kontaktperiode/@Stamsted` (påkrævet)","target":"Bevar; kan være lokalitetsoplysning, men er ikke automatisk `Encounter.location`.","issue":"Stamstedets betydning og identitet skal afklares før en Location-reference."},{"source":"`Kontaktperiode_afsluttet_af` (valgfri behandler, påkrævet enhed når elementet findes)","target":"Proveniens/afsluttende ansvar; ingen direkte generel Encounter-egenskab.","issue":"Afsluttende aktør er ikke et generelt Encounter-felt; behold ansvarshistorikken."},{"source":"`Rekv_enhed_til_kontaktperiode` (valgfri behandler, påkrævet enhed når elementet findes)","target":"Rekvirerende enhed; mulig relation til bestilling, men bestillingsressourcen ligger uden for afgrænsningen.","issue":"Bestillingen er uden for de otte klasser; derfor kan henvisningsrelationen ikke opløses endnu."},{"source":"`Henvisning/@Rekvisition_Identifikation`, `Kontaktgrundlag/@Ordination_Identifikation`","target":"Bevar kilde-ID'er; kan senere opløses mod `ServiceRequest` eller anden bestilling. Opret ikke en opdigtet reference.","issue":"Målressourcerne skal findes på ID, før FHIR-referencer til bestilling kan dannes."},{"source":"Relation til `Patientforloeb`","target":"`Encounter.episodeOfCare` når forløbet er repræsenteret og relationen holder.","issue":"SUP-forløbet kan være teknisk; kontrollér hvilken EpisodeOfCare kontakten skal pege på."}]},{"id":"Notat","parent":"Patientforloeb","fhir":"DocumentReference-kandidat","xsd":"SUPNotat.xsd","issue":"Dokumentstatus mangler, og notatets dokumentmodel skal afklares.","kind":"event","fields":[{"source":"`Haendelse` (påkrævet)","target":"Kilde-ID → `DocumentReference.identifier`; fælles metadataregler i §3.","issue":"Notatets kilde-ID kan bevares, mens hændelsesmetadata kræver særskilt fortolkning."},{"source":"`@Overskrift`","target":"`DocumentReference.description` eller titel i dokumentmetadata, hvis betydningen fastholdes.","issue":"Det skal afklares, om overskriften er notatets titel eller blot en visningstekst."},{"source":"`@KonstateringsTidspunkt` (påkrævet)","target":"Potentiel `DocumentReference.context.period`/klinisk dato; `DocumentReference.date` er registreringstid, ikke automatisk konstateringstid.","issue":"Konstateringstid er ikke nødvendigvis dokumentets oprettelses- eller registreringstid."},{"source":"`@Broedtekst`","target":"Kan lægges i `DocumentReference.content.attachment.data` som korrekt kodet tekst med `contentType`, hvis notatet er selvstændigt indhold og må gengives.","issue":"Indholdet kræver dokumentbeslutning, korrekt MIME-type og kodning; tekst må ikke blot kopieres til metadata."},{"source":"`@Objektreference`","target":"`DocumentReference.content.attachment.url` kun hvis referencen faktisk kan hentes og dens indholdstype/adgang er kendt.","issue":"Referencen skal kunne opløses med kendt adgang og indholdstype, før den kan blive Attachment.url."},{"source":"`Notat_type/KodetVaerdi`","target":"`DocumentReference.type` efter terminologikontrol.","issue":"Notattypen skal kobles til et verificeret kodeværk, før den kan angives som FHIR-type."},{"source":"`Notat_rekvireret_af`","target":"Bestiller-/proveniensrelation; kan ikke automatisk blive `author`.","issue":"Rekvirent og forfatter har forskellige roller; rekvirenten må ikke sættes som author uden belæg."},{"source":"`Notat_produceret_af/Producerende_Behandler` (valgfri)","target":"`DocumentReference.author` ved verificeret identitet.","issue":"Behandlerens identitet og faktiske forfatterrolle skal kunne eftervises."},{"source":"`Notat_produceret_af/Producerende_Enhed` (påkrævet)","target":"`DocumentReference.author` som organisation, hvis enheden faktisk er forfatter/udsteder.","issue":"Producerende enhed kan være organisatorisk udsteder snarere end tekstens forfatter."},{"source":"`Notat_produceret_af/@ProcedureSted`","target":"Lokal kontekst; ingen sikker direkte mapping.","issue":"ProcedureSted er en fri tekst uden påvist FHIR-location eller anden standardplacering."},{"source":"`Notat_til_procedure/@Udfoert_procedure_identifikation`","target":"Bevar eksplicit notat→procedure-relation; FHIR-repræsentation besluttes, når dokumentmodellen fastlægges.","issue":"Relationen kan bevares på ID, men den valgte dokumentmodel bestemmer FHIR-linket."},{"source":"`Procedurekode/KodetVaerdi`","target":"Kode, der er knyttet til notatet; må ikke automatisk oprette en udført `Procedure`.","issue":"Notatets procedurekode beviser ikke, at en selvstændig procedure blev udført."},{"source":"Dokumentstatus","target":"`DocumentReference.status` er påkrævet i FHIR, men findes ikke som dedikeret SUP-notatfelt.","issue":"DocumentReference kræver status; notatets XSD har ikke et felt, der fastslår den."}]},{"id":"Udfoert_procedure","parent":"Patientforloeb","fhir":"Procedure","xsd":"SUPProcedureProces.xsd","issue":"Procedure kan høre til kontakt eller direkte til forløb; relationen må ikke gættes.","kind":"event","fields":[{"source":"`Haendelse` (påkrævet)","target":"Kilde-ID → `Procedure.identifier`; fælles regler i §3.","issue":"Procedure-ID kan bevares, men hændelsesmetadata skal fortolkes som beskrevet i §3."},{"source":"`@Starttidspunkt` (påkrævet), `@Sluttidspunkt`","target":"`Procedure.performedDateTime` eller `performedPeriod`, afhængigt af kildepræcision og faktisk forløb.","issue":"Brug et tidspunkt eller en periode efter kildepræcision; mangelsymboler kan ikke overføres."},{"source":"`@Afslutningstidspunkt`","target":"Administrativ afslutning; ikke automatisk slut på `performedPeriod`.","issue":"Administrativ afslutning kan afvige fra tidspunktet, hvor proceduren faktisk sluttede."},{"source":"`@Objektreference`","target":"Bevar som dokument-/objektreference; sikker FHIR-relation kræver måltype og adgang.","issue":"Objektreferencens måltype, adgang og betydning er ikke defineret."},{"source":"`Art/KodetVaerdi`","target":"Kildens procedureart; mulig `Procedure.category` efter kode-/semantikkontrol.","issue":"Procedureartens kodeværk og forhold til FHIR-kategori er ikke fastlagt."},{"source":"`Procedure_kode/SammensatKodetVaerdi` (påkrævet)","target":"Primær kode → `Procedure.code` efter verificeret klassifikation; tillægskoder skal modelleres efter deres faktiske betydning.","issue":"Primærkode og tillægskoder har forskellige roller; klassifikation og tillægskoders betydning mangler."},{"source":"`Indikation/KodetVaerdi`","target":"Potentiel `Procedure.reasonCode`, hvis indikationen beskriver årsag.","issue":"Indikationen skal faktisk være en årsag til proceduren, før den kan bruges som reasonCode."},{"source":"`Prioritet/KodetVaerdi`","target":"Procedureprioritet; `Procedure` har ikke samme direkte prioritetselement som `Encounter`. Bevar råt eller brug aftalt udvidelse efter analyse.","issue":"Procedure har intet almindeligt prioritetselement; en eventuel udvidelse kræver fælles beslutning."},{"source":"`AfslutningsAarsag/KodetVaerdi`","target":"Mulig relevans for `Procedure.statusReason`, men kun hvis årsagen faktisk forklarer procedurens status.","issue":"Afslutningsårsagen kan vedrøre administration og ikke procedurens FHIR-status."},{"source":"`Udloesende_haendelse` med ID til rekvisition/ordination/planlagt procedure","target":"Mulig `Procedure.basedOn` efter opløsning af bestillingsressource; disse tre klasser mappes ikke her.","issue":"De nævnte bestillingsklasser mappes ikke her; deres ID kan endnu ikke blive sikre FHIR-referencer."},{"source":"`Udfoert_procedure_rekvireret_af` (valgfri)","target":"Rekvirerende person/enhed; ikke automatisk udførende.","issue":"Rekvirenten bestiller proceduren og må ikke forveksles med den udførende aktør."},{"source":"`Udfoert_procedure_produceret_af/Producerende_Behandler` (valgfri)","target":"`Procedure.performer.actor` ved verificeret identitet.","issue":"Identificér behandleren og bekræft udførende rolle, før performer-referencen dannes."},{"source":"`Udfoert_procedure_produceret_af/Producerende_Enhed` (påkrævet)","target":"`Procedure.performer.actor` som organisation, hvis den faktisk udførte; kontrollér LPR3-procedureansvar/SOR særskilt.","issue":"Bekræft at enheden udførte proceduren; LPR3-procedureansvar kræver desuden korrekt SOR."},{"source":"`Udfoert_procedure_produceret_af/@Udfoerelsessted`","target":"Potentiel `Procedure.location`, når stedet kan identificeres.","issue":"Fri tekst om udførelsessted skal opløses til et identificeret sted før Location-reference."},{"source":"`Udfoert_procedure_afsluttet_af` (valgfri)","target":"Afsluttende aktør/enhed i proveniens; ikke automatisk performer.","issue":"Afsluttende aktør kan være administrativ og må ikke automatisk blive performer."},{"source":"`Procedure.status`, kontakt-/forløbslink","target":"Status kræver livscyklusregel. `Procedure.encounter` kræver dokumenteret kontaktrelation; ellers bevar kildeforløbsrelationen separat.","issue":"FHIR-status og relation til kontakt eller forløb mangler en verificeret kilde-/livscyklusregel."}]},{"id":"Diagnose","parent":"Patientforloeb","fhir":"Condition · evt. Encounter.diagnosis","xsd":"SUPVurdering.xsd","issue":"Diagnosen ligger under forløb; sikker diagnose-til-kontakt-kobling mangler.","kind":"event","fields":[{"source":"`Haendelse` (påkrævet)","target":"Kilde-ID → `Condition.identifier`; fælles regler i §3.","issue":"Diagnose-ID kan bevares, men hændelsesmetadata skal fortolkes efter de fælles regler i §3."},{"source":"`@Diagnosetidspunkt` (påkrævet)","target":"Potentiel `Condition.recordedDate` eller `onset[x]` afhængigt af om kilden mener registrering, konstatering eller sygdomsstart. Ingen automatisk oversættelse.","issue":"Det er uklart, om tiden angiver registrering, diagnosticering eller sygdommens begyndelse."},{"source":"`@Afsluttidspunkt`","target":"Kildediagnosens afslutning; ikke automatisk `Condition.abatement[x]`, der kan betyde at sygdommen ophørte.","issue":"En afsluttet registrering betyder ikke nødvendigvis, at patientens sygdom er ophørt."},{"source":"`Art/KodetVaerdi` (påkrævet)","target":"Klassifikation af diagnoseart. Kan muligvis skelne aktions-, bi- og henvisningsdiagnose; kræver kodet, kildeverificeret regel.","issue":"Kodeværk og diagnoseart skal verificeres; en henvisningsdiagnose er ikke automatisk kontaktdiagnose."},{"source":"`DiagnoseKode/SammensatKodetVaerdi` (påkrævet)","target":"Primær diagnosekode → `Condition.code` med verificeret kodeværk. Tillægskoder bevares med særskilt rolle.","issue":"Primærkode og tillægskoder skal holdes adskilt; kodeværk og tillægskodernes betydning mangler."},{"source":"`Diagnosticering_udfoert_af/Ansvarlig_Behandler` (valgfri)","target":"Potentiel `Condition.asserter`, hvis vedkommende faktisk har stillet diagnosen.","issue":"Behandlerens identitet og rolle som den, der faktisk stillede diagnosen, skal kontrolleres."},{"source":"`Diagnosticering_udfoert_af/Ansvarlig_Enhed` (påkrævet)","target":"Diagnostisk ansvarlig organisation; bevar, men der er ikke et generelt direkte `Condition`-felt for enheden.","issue":"Enheden skal bevares som ansvarskontekst; Condition har ikke et enkelt felt for denne rolle."},{"source":"`Diagnosticering_udfoert_af/@Diagnosested`","target":"Sted for diagnosticering; skal fortolkes før evt. location-relation.","issue":"Diagnosested er fri tekst; betydning og sted-ID mangler før en struktureret relation."},{"source":"`Diagnose_afsluttet_af` (valgfri)","target":"Afsluttende person/enhed i proveniens; ikke automatisk tegn på klinisk helbredelse.","issue":"Afsluttende enhed/person dokumenterer registreringsansvar, ikke nødvendigvis helbredelse."},{"source":"`Diagn_ref_til_proc/@Procedure_identifikation`","target":"Bevar eksplicit diagnose→procedure-relation; FHIR-link kræver fastlagt betydning og målressource.","issue":"Relationens kliniske betydning og målprocedurens identitet skal fastlægges før et FHIR-link."},{"source":"Kontaktkobling og rolle som aktions-/bidiagnose","target":"Kun når præcis `Encounter` og kodebetydning er sikker: `Condition.encounter`, `Condition.category=encounter-diagnosis` og evt. `Encounter.diagnosis` med dokumenteret rolle.","issue":"SUP har ingen sikker diagnose→kontakt-kobling; uden den kan LPR3-rollen ikke fastslås."}]}],"shared":{"id":"Haendelse","fhir":"Fælles hændelsesmetadata","xsd":"SUPHaendelse.xsd","issue":"ID, registreringstid og ugyldighed skal forstås i den konkrete hændelses kontekst.","fields":[{"source":"`Haendelse/@Identifikation`","target":"Den tilsvarende ressources `identifier` med kildesystem og type.","issue":"Kilde-ID skal have et entydigt namespace; samme ID-tekst kan forekomme i flere systemer."},{"source":"`Haendelse/@FriTekst`","target":"Ressourcespecifik tekst, hvis betydning er kendt; ellers bevar råt.","issue":"XSD angiver ikke fritekstens betydning for hver hændelsestype."},{"source":"`Haendelse/@Registreringstidspunkt`","target":"Registreringstid i provenienssporet; ikke automatisk klinisk hændelsestid.","issue":"Registreringstid er ikke nødvendigvis tidspunktet for selve behandlingen eller kontakten."},{"source":"`Haendelse/@Tilstede_tidspunkt`","target":"Bevar råt, indtil feltets betydning er fastlagt.","issue":"XSD forklarer ikke, hvilken klinisk eller administrativ situation dette tidspunkt angiver."},{"source":"`Haendelse/@Ugyldighedstidspunkt`","target":"Bevar ugyldighedsoplysning; ikke automatisk FHIR `entered-in-error`.","issue":"Ugyldighedens årsag mangler; en ugyldig hændelse er ikke nødvendigvis registreret ved en fejl."},{"source":"`Haendelse/HaendelseRegistreretAf/Registrerings_Enhed` og `@Registrerende_behandler`","target":"Registrerende organisation/person i proveniens, hvis identiteter kan opløses.","issue":"Enhed og behandler kræver identificerbare aktører, før der kan oprettes FHIR-referencer."},{"source":"`Haendelse/Sikkerhedskode/KodetVaerdi`","target":"Informationssikkerheds-/adgangskontekst; kræver særskilt fortolkning.","issue":"Kodeværk og adgangsbetydning mangler; sikkerhedskoden er ikke en klinisk kode."}]},"totalFields":90};
+    const byId = new Map(MAPPING_DATA.nodes.map(node => [node.id, node]));
+    let selected = 'Patientforloeb';
+    let query = '';
+    const stage = document.getElementById('stage');
+    const detail = document.getElementById('detail-panel');
+    const search = document.getElementById('search');
+
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+    }
+    function rich(value) {
+      return escapeHtml(value)
+        .replace(/`([^`]+)`/g, '<code>$1</code>')
+        .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    }
+    function label(node) {
+      return node.kind === 'envelope' ? 'MEDDELELSE' : node.kind === 'person' ? 'PATIENT' : node.kind === 'course' ? 'FORLØB' : node.kind === 'cave' ? 'ADVARSEL' : 'HÆNDELSE';
+    }
+    function card(node) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'node';
+      button.dataset.id = node.id;
+      button.setAttribute('aria-label', `${node.id}: ${node.fhir}. ${node.fields.length} felter. ${node.issue}`);
+      button.innerHTML = `<span class="node-kind">${label(node)}</span><span class="node-count">${node.fields.length} felter</span><span class="node-title">${escapeHtml(node.id)}</span><span class="node-target">${escapeHtml(node.fhir)}</span>`;
+      button.addEventListener('click', () => selectNode(node.id));
+      return button;
+    }
+    function mountCards() {
+      document.getElementById('tier-root').append(card(byId.get('Aflever_patientdata')));
+      document.getElementById('tier-person').append(card(byId.get('Person')));
+      for (const id of ['CaveOplysninger', 'Patientforloeb']) document.getElementById('tier-branch').append(card(byId.get(id)));
+      for (const id of ['Kontaktperiode', 'Notat', 'Udfoert_procedure', 'Diagnose']) document.getElementById('tier-events').append(card(byId.get(id)));
+    }
+    function ancestry(id) {
+      const ids = new Set([id]);
+      let node = byId.get(id);
+      while (node?.parent) { ids.add(node.parent); node = byId.get(node.parent); }
+      return ids;
+    }
+    function updateCards() {
+      const related = ancestry(selected);
+      for (const button of stage.querySelectorAll('.node')) {
+        const id = button.dataset.id;
+        button.classList.toggle('selected', id === selected);
+        button.classList.toggle('related', related.has(id) && id !== selected);
+        if (id === selected) button.setAttribute('aria-current', 'true');
+        else button.removeAttribute('aria-current');
+      }
+      if (selected === 'Haendelse') document.getElementById('shared-button').setAttribute('aria-current', 'true');
+      else document.getElementById('shared-button').removeAttribute('aria-current');
+      drawLinks();
+    }
+    function drawLinks() {
+      const svg = document.getElementById('links');
+      const rect = stage.getBoundingClientRect();
+      svg.setAttribute('viewBox', `0 0 ${rect.width} ${rect.height}`);
+      svg.replaceChildren();
+      const related = ancestry(selected);
+      for (const node of MAPPING_DATA.nodes) {
+        if (!node.parent) continue;
+        const startEl = stage.querySelector(`[data-id="${node.parent}"]`);
+        const endEl = stage.querySelector(`[data-id="${node.id}"]`);
+        if (!startEl || !endEl) continue;
+        const a = startEl.getBoundingClientRect();
+        const b = endEl.getBoundingClientRect();
+        const x1 = a.left - rect.left + a.width / 2;
+        const y1 = a.bottom - rect.top;
+        const x2 = b.left - rect.left + b.width / 2;
+        const y2 = b.top - rect.top;
+        const bend = Math.max(20, (y2 - y1) / 2);
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        line.setAttribute('d', `M ${x1} ${y1} C ${x1} ${y1 + bend}, ${x2} ${y2 - bend}, ${x2} ${y2}`);
+        if (related.has(node.id) && related.has(node.parent)) line.classList.add('active');
+        svg.append(line);
+      }
+    }
+    function renderSelected() {
+      const item = selected === 'Haendelse' ? MAPPING_DATA.shared : byId.get(selected);
+      const sharedText = selected === 'Haendelse' ? 'Fælles for Kontaktperiode, Notat, Udfoert_procedure og Diagnose.' : item.kind === 'envelope' ? 'Meddelelsesniveau' : `SUP-klasse · ${item.fields.length} felter`;
+      detail.innerHTML = `<div class="detail-head"><div class="detail-kicker">${escapeHtml(sharedText)}</div><h2 class="detail-title">${escapeHtml(item.id)}</h2><div class="fhir-target"><span>FHIR</span>${escapeHtml(item.fhir)}</div><div class="detail-meta">XSD: ${escapeHtml(item.xsd)}</div><div class="issue-callout"><strong>Central problemstilling</strong>${escapeHtml(item.issue)}</div></div><div class="field-head"><h3>Felter og mapping</h3><span>${item.fields.length} felter</span></div><div class="fields">${item.fields.map((field, i) => `<div class="field-row" data-row="${i}"><div class="source-line"><span class="index">${String(i + 1).padStart(2, '0')}</span><span class="source-name">${rich(field.source)}</span></div><p class="field-line"><b>FHIR-forslag</b>${rich(field.target)}</p><p class="field-line problem"><b>Vurdering</b>${rich(field.issue)}</p></div>`).join('')}</div>`;
+    }
+    function allItems() { return [MAPPING_DATA.shared, ...MAPPING_DATA.nodes]; }
+    function renderSearch() {
+      const lower = query.toLocaleLowerCase('da');
+      const matches = [];
+      for (const item of allItems()) for (let i = 0; i < item.fields.length; i++) {
+        const field = item.fields[i];
+        if (`${item.id} ${item.fhir} ${field.source} ${field.target} ${field.issue}`.toLocaleLowerCase('da').includes(lower)) matches.push({item, field, index: i});
+      }
+      detail.innerHTML = `<div class="detail-head"><div class="detail-kicker">Søgning i hele mappingen</div><h2 class="detail-title">${matches.length} ${matches.length === 1 ? 'felt' : 'felter'} fundet</h2><div class="detail-meta">Søgningen dækker SUP-navn, FHIR-forslag og den konkrete vurdering. Vælg et resultat for at åbne feltet i sin klasse.</div></div><div class="search-results">${matches.length ? matches.map(({item, field, index}) => `<button type="button" class="result" data-item="${escapeHtml(item.id)}" data-index="${index}"><strong>${rich(field.source)}</strong><small>${escapeHtml(item.id)} → ${escapeHtml(item.fhir)}</small><span>${rich(field.issue)}</span></button>`).join('') : '<div class="empty">Ingen felter matcher søgningen. Prøv et SUP-feltnavn, en FHIR-ressource eller et emne som “status” eller “kontakt”.</div>'}</div>`;
+      for (const button of detail.querySelectorAll('.result')) button.addEventListener('click', () => {
+        const id = button.dataset.item;
+        const index = Number(button.dataset.index);
+        search.value = '';
+        query = '';
+        selectNode(id);
+        const row = detail.querySelector(`[data-row="${index}"]`);
+        if (row) {
+          row.classList.add('emphasis');
+          row.scrollIntoView({block:'nearest', behavior:'smooth'});
+          setTimeout(() => row.classList.remove('emphasis'), 2500);
+        }
+      });
+    }
+    function selectNode(id) {
+      selected = id;
+      if (query) { search.value = ''; query = ''; }
+      updateCards();
+      renderSelected();
+    }
+    mountCards();
+    document.getElementById('hero-count').innerHTML = `<strong>${MAPPING_DATA.nodes.length}</strong> SUP-klasser &nbsp;·&nbsp; <strong>${MAPPING_DATA.totalFields}</strong> feltrækker`;
+    document.getElementById('shared-button').addEventListener('click', () => selectNode('Haendelse'));
+    search.addEventListener('input', () => { query = search.value.trim(); query ? renderSearch() : renderSelected(); });
+    updateCards();
+    renderSelected();
+    new ResizeObserver(drawLinks).observe(stage);
+    window.addEventListener('resize', drawLinks);
+  </script>
+</body>
+</html>

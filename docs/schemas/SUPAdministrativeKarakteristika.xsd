@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.medcom.dk/SUP_30" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.medcom.dk/SUP_30">
+	<xsd:include schemaLocation="SUPTyper.xsd"/>
+	<xsd:include schemaLocation="SUPBehandlere.xsd"/>
+	<xsd:include schemaLocation="SUPOrganisation.xsd"/>
+	<xsd:include schemaLocation="SUPKlassifikation.xsd"/>
+	<xsd:include schemaLocation="SUPFaellesAttributter.xsd"/>
+	<xsd:include schemaLocation="SUPHaendelse.xsd"/>
+	<!-- ====================== Pakke: Administrative Karakteristika ==============-->
+	<xsd:element name="Administrativ_karakteristikum">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Haendelse"/>
+				<xsd:element ref="Karakteristikum_kode"/>
+				<xsd:element ref="Aarsag" minOccurs="0"/>
+				<xsd:element ref="AfslutningsAarsag" minOccurs="0"/>
+				<xsd:element ref="Administrativ_karakteristikum_konstateret_af"/>
+				<xsd:element ref="Administrativ_karakteristikum_afsluttet_af" minOccurs="0"/>
+				<xsd:element ref="Udloesende_rekv_eller_procedure" minOccurs="0"/>
+			</xsd:sequence>
+			<xsd:attribute name="Starttidspunkt" type="SUPdateTime" use="required"/>
+			<xsd:attribute name="SlutTidspunkt" type="SUPdateTime" use="optional"/>
+			<xsd:attribute name="AfslutTidspunkt" type="SUPdateTime" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Administrativ_karakteristikum_afsluttet_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Afsluttende_Behandler" minOccurs="0"/>
+				<xsd:element ref="Afsluttende_Enhed"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Administrativ_karakteristikum_konstateret_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Konstaterende_Behandler" minOccurs="0"/>
+				<xsd:element ref="Konstaterende_Enhed"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Karakteristikum_kode">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="SammensatKodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Udloesende_rekv_eller_procedure">
+		<xsd:complexType>
+			<xsd:attribute name="Rekvisition_Procedure_Identifikation" type="xsd:string" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>
