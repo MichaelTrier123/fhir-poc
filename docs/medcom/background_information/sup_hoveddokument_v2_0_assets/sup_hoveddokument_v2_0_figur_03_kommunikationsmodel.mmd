@@ -1,0 +1,28 @@
+flowchart LR
+    EPJ["EPJ-system"]
+    AF["Andre fødesystemer"]
+    UP1["Udtræksprogram"]
+    UP2["Udtræksprogram"]
+    XML["SUP-XML-fil"]
+    FTP["FTP"]
+    DB["Egen SUP-database"]
+    ODB["Andre SUP-databaser"]
+    B["SUP-browser"]
+    SP["Sundhedsportalen"]
+    EPJP["EPJ-præsentation"]
+    USR["Bruger"]
+    AN["SUP-analyse"]
+    SEC["SUP-system sikkerhed"]
+    EPJ -->|"1 udtræk"| UP1
+    AF -->|"1 udtræk"| UP2
+    UP1 -->|"2 XML"| XML
+    UP2 -->|"2 XML"| XML
+    XML -->|"3 transmission"| FTP
+    FTP -->|"5 lagring"| DB
+    SEC -->|"4 beskyttelse"| DB
+    DB -->|"9 fremvisning"| B
+    ODB -->|"10 fremmed database"| B
+    SP -->|"7 adgang"| B
+    EPJP -->|"8 adgang via EPJ"| B
+    B -->|"6 brugeradgang"| USR
+    DB -->|"13 analyse"| AN

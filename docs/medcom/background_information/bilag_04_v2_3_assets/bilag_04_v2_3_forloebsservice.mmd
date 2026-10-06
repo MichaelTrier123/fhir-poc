@@ -1,0 +1,6 @@
+flowchart LR
+  A[Aflever_patientdata] --> P[Person]
+  P -->|0..*| F[PatientforloebOversigt]
+  P -->|0..*| C[CaveOplysninger]
+  F --> OA[OprindeligAnsvarligEnhed]
+  F -->|0..*| D[Diagnose]

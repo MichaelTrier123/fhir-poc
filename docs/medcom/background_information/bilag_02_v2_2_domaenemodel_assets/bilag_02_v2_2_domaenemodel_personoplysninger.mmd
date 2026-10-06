@@ -1,0 +1,6 @@
+flowchart LR
+    P["Person"]
+    C["CaveOplysninger"]
+    O["Organisatorisk Enhed"]
+    P -->|"1 : 0..n"| C
+    C -->|"0..n : 1"| O

@@ -1,0 +1,11 @@
+flowchart LR
+  D[Diagnose] --> H[Haendelse]
+  D --> A[Art]
+  D --> K[DiagnoseKode]
+  D --> U[Diagnosticering_udfoert_af]
+  U -. optional .-> B[Ansvarlig_Behandler]
+  U --> E[Ansvarlig_Enhed]
+  D -. optional .-> AF[Diagnose_afsluttet_af]
+  AF -. optional .-> AB[Afsluttende_Behandler]
+  AF --> AE[Afsluttende_Enhed]
+  D -. optional .-> RP[Diagn_ref_til_proc]

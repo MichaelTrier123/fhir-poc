@@ -1,0 +1,11 @@
+flowchart TB
+    K["Klassifikation"]
+    KV["KodetVærdi"]
+    PK["PrimærKode"]
+    TK["Tillægskode"]
+    SKV["Sammensat kodetVærdi"]
+    K -->|"klassificering 1 : 0..n"| KV
+    KV -->|"specialisering"| PK
+    KV -->|"specialisering"| TK
+    PK -->|"primær kodning 1"| SKV
+    TK -->|"tillægskodning 0..n"| SKV

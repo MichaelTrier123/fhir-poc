@@ -1,0 +1,11 @@
+flowchart LR
+  N[Notat] --> H[Haendelse]
+  N -. optional .-> T[Notat_type]
+  N -. optional .-> R[Notat_rekvireret_af]
+  R -. optional .-> RB[Rekvirerende_Behandler]
+  R --> RE[Rekvirerende_Enhed]
+  N --> P[Notat_produceret_af]
+  P -. optional .-> PB[Producerende_Behandler]
+  P --> PE[Producerende_Enhed]
+  N -. optional .-> TP[Notat_til_procedure]
+  N -. optional .-> PK[Procedurekode]

@@ -1,0 +1,14 @@
+flowchart LR
+    U["Udført procedure"]
+    O["Ordination"]
+    R["Rekvisition"]
+    P["Planlagt procedure"]
+    RE["Rekvirerende Enhed"]
+    PE["Producerende Enhed"]
+    AE["Afsluttende Enhed"]
+    O -->|"ordination til udført procedure 0..1 : 0..n"| U
+    R -->|"rekvisition til udført procedure 0..1 : 0..n"| U
+    P -->|"planlægning af udført procedure 0..1 : 0..n"| U
+    U -->|"rekvireret af 0..n : 1"| RE
+    U -->|"produceret af 0..n : 1"| PE
+    U -->|"afsluttet af 0..n : 0..1"| AE

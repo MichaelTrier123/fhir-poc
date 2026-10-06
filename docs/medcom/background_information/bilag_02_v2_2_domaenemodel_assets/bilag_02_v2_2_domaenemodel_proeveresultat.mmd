@@ -1,0 +1,8 @@
+flowchart LR
+    P["Prøveresultat"]
+    U["Udført procedure"]
+    R["Rekvirerende Enhed"]
+    E["Producerende Enhed"]
+    U -->|"prøveresultat til procedure 0..1 : 0..n"| P
+    P -->|"rekvireret af 0..n : 0..1"| R
+    P -->|"produceret af 0..n : 1"| E

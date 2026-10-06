@@ -1,0 +1,16 @@
+flowchart LR
+    O["Ordination"]
+    B["Booking af procedure"]
+    P["Planlagt procedure"]
+    R["Rekvisition"]
+    U["Udført procedure"]
+    OE["Ordinerende Enhed"]
+    PE["Producerende Enhed"]
+    SE["Seponerende Enhed"]
+    P -->|"planlægning af ordination"| O
+    B -->|"booket ordination"| O
+    O -->|"udløsende ordination"| R
+    O -->|"ordination til udført procedure"| U
+    O -->|"ordineret af 0..n : 1"| OE
+    O -->|"planlagt produceret af 0..n : 0..1"| PE
+    O -->|"seponeret af 0..n : 0..1"| SE

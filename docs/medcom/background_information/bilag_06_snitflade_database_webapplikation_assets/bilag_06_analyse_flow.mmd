@@ -1,0 +1,9 @@
+sequenceDiagram
+    participant A as Analytiker
+    participant W as SUP-webapplikation
+    participant DB as SUP-databaseapplikation
+    A->>W: Hændelsestype, enhed, periode, anonymitet
+    W->>DB: Analyse-Service + System-ID/password
+    DB-->>W: Returkode + filnavn
+    DB->>DB: Generér datasæt asynkront
+    A->>W: Download genereret datasæt

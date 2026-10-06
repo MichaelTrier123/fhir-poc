@@ -1,0 +1,13 @@
+flowchart LR
+  P[Proeveresultat] --> H[Haendelse]
+  P --> R[Resultat]
+  P -. optional .-> U[Us_procedure]
+  P -. optional .-> A[Anatomisk_Lokalisation]
+  P -. optional .-> M[Morfologi]
+  P -. optional .-> TP[Proeveresultat_til_procedure]
+  P -. optional .-> RR[Proeveresultat_rekvireret_af]
+  RR -. optional .-> RB[Rekvirerende_Behandler]
+  RR --> RE[Rekvirerende_Enhed]
+  P --> PR[Proeveresultat_produceret_af]
+  PR -. optional .-> PB[Producerende_Behandler]
+  PR --> PE[Producerende_Enhed]

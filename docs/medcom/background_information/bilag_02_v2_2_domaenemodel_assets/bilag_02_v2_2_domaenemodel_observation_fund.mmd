@@ -1,0 +1,6 @@
+flowchart LR
+    O["Observation/fund"]
+    U["Udført procedure"]
+    E["Observerende Enhed"]
+    U -->|"udløsende procedure 0..1 : 0..n"| O
+    O -->|"observeret af 0..n : 1"| E

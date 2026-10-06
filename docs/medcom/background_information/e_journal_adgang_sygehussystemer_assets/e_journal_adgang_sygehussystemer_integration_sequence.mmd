@@ -1,0 +1,10 @@
+sequenceDiagram
+    participant K as Klientsystem
+    participant E as e-journal
+    participant B as Klinikerens browser
+    K->>E: HTTPS POST med name/value-parametre
+    E-->>K: sessionid
+    K->>E: GET med sessionid
+    E-->>B: HTML-side for valgt patient
+    Note over K,E: Systembruger/password autentificerer klientsystemet
+    Note over E,B: Brugerhandlinger logges til e-journal/MinLog

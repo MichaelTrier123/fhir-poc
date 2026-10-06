@@ -1,0 +1,8 @@
+flowchart LR
+    K["Komplikation/bivirkning"]
+    U["Udført procedure"]
+    P["Producerende Enhed"]
+    O["Observerende Enhed"]
+    U -->|"procedure der kompliceres/har bivirkning 0..1 : 0..n"| K
+    K -->|"produceret af 0..n : 1"| P
+    K -->|"observeret af 0..n : 1"| O

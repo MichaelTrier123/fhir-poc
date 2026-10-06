@@ -1,0 +1,12 @@
+flowchart LR
+  A[Administrativ_karakteristikum] --> H[Haendelse]
+  A --> K[Karakteristikum_kode]
+  A -. optional .-> AA[Aarsag]
+  A -. optional .-> AF[AfslutningsAarsag]
+  A --> KA[Administrativ_karakteristikum_konstateret_af]
+  KA -. optional .-> KB[Konstaterende_Behandler]
+  KA --> KE[Konstaterende_Enhed]
+  A -. optional .-> SLA[Administrativ_karakteristikum_afsluttet_af]
+  SLA -. optional .-> AB[Afsluttende_Behandler]
+  SLA --> AE[Afsluttende_Enhed]
+  A -. optional .-> U[Udloesende_rekv_eller_procedure]

@@ -1,0 +1,12 @@
+flowchart LR
+  ROOT["Diagnose"]
+  ROOT --> H["Haendelse"]
+  ROOT --> A["Art"]
+  ROOT --> DK["DiagnoseKode"]
+  ROOT --> U["Diagnosticering_udfoert_af"]
+  U -.-> AB["Ansvarlig_Behandler"]
+  U --> AE["Ansvarlig_Enhed"]
+  ROOT -.-> AF["Diagnose_afsluttet_af"]
+  AF -.-> FB["Afsluttende_Behandler"]
+  AF --> FE["Afsluttende_Enhed"]
+  ROOT -.-> RP["Diagn_ref_til_proc"]

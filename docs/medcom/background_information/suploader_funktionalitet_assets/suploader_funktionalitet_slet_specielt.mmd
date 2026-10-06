@@ -1,0 +1,12 @@
+flowchart TD
+    A["Modtag XML: CPR + udtræk-id + forløbs-id'er"] --> B["Find forløb ved kombinationen CPR, udtræk-id og forløbs-id"]
+    B --> C["Slet fundne forløb og tilhørende hændelser"]
+    C --> D["Slet CAVE for CPR + udtræk-id uafhængigt af om forløb blev slettet"]
+    D --> E{"Indeholder XML nye CAVE-oplysninger?"}
+    E -- Ja --> F["Indsæt CAVE efter sletning"]
+    E -- Nej --> G["Fortsæt"]
+    F --> H["Opdater PERSON.person_xml fra slette-XML"]
+    G --> H
+    H --> I{"Findes der fortsat forløb?"}
+    I -- Nej --> J["Slet PERSON"]
+    I -- Ja --> K["Bevar PERSON"]

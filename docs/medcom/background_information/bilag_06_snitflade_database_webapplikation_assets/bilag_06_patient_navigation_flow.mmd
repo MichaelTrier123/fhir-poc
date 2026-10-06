@@ -1,0 +1,9 @@
+sequenceDiagram
+    participant B as SUP-webapplikation
+    participant DB as SUP-databaseapplikation
+    B->>DB: Forløbs-Service(CPR, FraDato, TilDato)
+    DB-->>B: Person + forløbsoversigt + diagnoser
+    B->>DB: Hændelses-Service(CPR, Forløbs-ID, periode)
+    DB-->>B: Person + forløb + hændelsesliste
+    B->>DB: EnkeltHændelses-Service(CPR, Hændelses-ID)
+    DB-->>B: Person + forløb + hændelsesdetaljer

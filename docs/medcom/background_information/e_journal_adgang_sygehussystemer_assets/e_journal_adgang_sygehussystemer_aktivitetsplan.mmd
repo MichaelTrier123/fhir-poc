@@ -1,0 +1,22 @@
+flowchart TB
+    A["Notat til leverandør"]
+    B["Løsningsbeskrivelse"]
+    C["Review"]
+    D["Tilpasning"]
+    E["Godkendelse"]
+    F["Brugerinformation"]
+    G["Udvikling"]
+    H["Testprotokol"]
+    I["Testmiljø: installation/aftestning/godkendelse"]
+    J["Driftsmiljø: installation/aftestning/godkendelse"]
+    K["Information til brugere"]
+    A -->|"kunde -> leverandør"| B
+    B -->|"leverandør"| C
+    C -->|"kunde + MedCom"| D
+    D -->|"leverandør"| E
+    E -->|"godkendt"| F
+    F -->|"kunde"| G
+    G -->|"leverandør"| H
+    H -->|"kunde/leverandør"| I
+    I -->|"efter godkendelse"| J
+    J -->|"produktion"| K

@@ -1,0 +1,14 @@
+flowchart LR
+    K["Kontaktperiode"]
+    O["Ordination"]
+    R["Rekvisition"]
+    P["Planlagt procedure"]
+    L["Lægeligt kontaktansvarlig Enhed"]
+    A["Afsluttende Enhed"]
+    RE["Rekvirerende Enhed"]
+    O -->|"kontaktgrundlag 0..1"| K
+    R -->|"henvisning 0..1"| K
+    P -->|"planlægningsgrundlag 0..1"| K
+    K -->|"lægelig ansvarlig 0..n : 1"| L
+    K -->|"afsluttet af 0..n : 0..1"| A
+    K -->|"rekvirerende enhed 0..n : 1"| RE

@@ -1,0 +1,13 @@
+flowchart LR
+    MO["Medicinordination"]
+    MG["Medicingivning"]
+    OE["Ordinerende Enhed"]
+    PE["Producerende Enhed"]
+    SE["Seponerende/Afsluttende Enhed"]
+    MO -->|"medicingivning forårsaget af 0..1 : 0..n"| MG
+    MO -->|"ordineret af 0..n : 1"| OE
+    MO -->|"planlagt givet af 0..n : 0..1"| PE
+    MG -->|"ordineret af 0..n : 0..1"| OE
+    MG -->|"givet af 0..n : 1"| PE
+    MO -->|"seponeret af"| SE
+    MG -->|"afsluttet af"| SE

@@ -1,0 +1,9 @@
+flowchart TD
+    A["Modtag XML: CPR + udtræk-id"] --> B{"Matcher både CPR og udtræk-id?"}
+    B -- Nej --> Z["Ingen forløb slettes"]
+    B -- Ja --> C["Slet alle matchende forløb"]
+    C --> D["Slet hændelser under de slettede forløb"]
+    D --> E["Slet CAVE med samme CPR + udtræk-id"]
+    E --> F{"Findes der fortsat forløb for personen?"}
+    F -- Nej --> G["Slet PERSON"]
+    F -- Ja --> H["Bevar PERSON"]

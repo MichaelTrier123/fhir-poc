@@ -1,0 +1,8 @@
+flowchart LR
+    E["Effekt af behandling"]
+    U["Udført procedure"]
+    P["Producerende Enhed"]
+    O["Observerende Enhed"]
+    U -->|"behandlingsprocedure der har effekten 0..1 : 0..n"| E
+    E -->|"produceret af 0..n : 1"| P
+    E -->|"observeret af 0..n : 1"| O

@@ -1,0 +1,26 @@
+flowchart LR
+    AFS["Afsender"]
+    SIK["Sikkerhedsadministrator"]
+    MOD["Modtager"]
+    ANA["Analytiker"]
+
+    UC_AFL(["Aflever patientdata"])
+    UC_OPR(["Opret bruger"])
+    UC_LOG(["Logon"])
+    UC_FOR(["Forespørg på patient"])
+    UC_SE(["Se patientdata"])
+    UC_AKUT(["Overfør patientdata akut"])
+    UC_MED(["Vis meddelelser"])
+    UC_FLERE(["Forespørg på flere patienter"])
+
+    AFS --> UC_AFL
+    SIK --> UC_OPR
+    SIK --> UC_LOG
+    MOD --> UC_LOG
+    MOD --> UC_FOR
+    MOD --> UC_AKUT
+    ANA --> UC_LOG
+    ANA --> UC_FLERE
+
+    UC_FOR -. "<<include>>" .-> UC_SE
+    UC_FOR -. "<<include>>" .-> UC_MED

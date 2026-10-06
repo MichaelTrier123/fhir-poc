@@ -1,0 +1,13 @@
+sequenceDiagram
+    participant A as Analytiker
+    participant W as SUP-webapplikation
+    participant S as Analyse-Service
+    participant DB as SUP-database
+    A->>W: Vælg hændelsestyper, enhed, periode og anonymitet
+    W->>S: Bestil analyseudtræk
+    S->>DB: Find patientdata der matcher kriterier
+    DB-->>S: Rådata
+    S-->>W: Filnavn / bestillingsstatus
+    S->>S: Generér semikolonsepareret fil
+    A->>W: Download generede datasæt
+    W-->>A: Fil, hvis færdig og bruger er bestiller

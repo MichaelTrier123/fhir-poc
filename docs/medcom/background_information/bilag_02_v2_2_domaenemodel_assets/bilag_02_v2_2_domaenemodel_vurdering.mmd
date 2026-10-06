@@ -1,0 +1,12 @@
+flowchart LR
+    Prob["Problem"]
+    M["Mål"]
+    U["Udført procedure"]
+    D["Diagnose"]
+    K["Komplikation/bivirkning"]
+    E["Effekt af behandling"]
+    Prob -->|"problem/diagnose som målet gælder 0..1 : 0..n"| M
+    U -->|"procedure hvor man konstaterer problem"| Prob
+    U -->|"diagnosereference til procedure"| D
+    U -->|"procedure der kompliceres/har bivirkning"| K
+    U -->|"behandlingsprocedure der har effekten"| E

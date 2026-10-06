@@ -1,0 +1,10 @@
+flowchart LR
+    Per["Person"]
+    PF["Patientforløb"]
+    H["Hændelse"]
+    RE["RegistreringsEnhed"]
+    OE["Oprindelig forløbsansvarlig enhed"]
+    Per -->|"person er patient i forløb 1 : 0..n"| PF
+    PF -->|"hændelse tilhører patientforløb 1 : 0..n"| H
+    H -->|"hændelse registreret af 0..n : 1"| RE
+    PF -->|"oprindelig forløbsansvarlig 0..n : 1"| OE

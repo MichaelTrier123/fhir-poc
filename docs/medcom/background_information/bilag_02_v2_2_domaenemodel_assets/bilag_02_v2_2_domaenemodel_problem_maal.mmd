@@ -1,0 +1,15 @@
+flowchart LR
+    P["Problem"]
+    M["Mål"]
+    U["Udført procedure"]
+    D["Diagnose"]
+    K["Konstaterende Enhed"]
+    A["Afsluttende Enhed"]
+    B["Besluttende Enhed"]
+    U -->|"procedure hvor man konstaterer problem 0..1 : 0..n"| P
+    P -->|"problem som målet gælder 0..1 : 0..n"| M
+    D -->|"diagnose som målet gælder"| M
+    P -->|"problem konstateret af 0..n : 1"| K
+    P -->|"problem afsluttet af 0..n : 0..1"| A
+    M -->|"mål afsluttet af 0..n : 0..1"| A
+    M -->|"mål besluttet af 0..n : 1"| B

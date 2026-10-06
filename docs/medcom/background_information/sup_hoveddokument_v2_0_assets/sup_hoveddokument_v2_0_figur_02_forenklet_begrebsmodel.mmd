@@ -1,0 +1,42 @@
+flowchart TB
+    P["Person"]
+    PF["Patientforløb"]
+    H["Hændelse"]
+    E0["Medicinordination"]
+    E1["Medicingivning"]
+    E2["Notat"]
+    E3["Prøveresultat"]
+    E4["Observation/fund"]
+    E5["Diagnose"]
+    E6["Administrativ karakteristikum"]
+    E7["Rekvisition"]
+    E8["Kontaktperiode"]
+    E9["Udført procedure"]
+    E10["Ordination"]
+    E11["Planlagt procedure"]
+    E12["Booking af procedure"]
+    E13["Anamnestisk oplysning"]
+    E14["Effekt af behandling"]
+    E15["Komplikation/bivirkning"]
+    E16["Problem"]
+    E17["Mål"]
+    P -->|"1 : 1..n"| PF
+    PF -->|"1 : 1..n"| H
+    H -->|"hændelsestype"| E0
+    H -->|"hændelsestype"| E1
+    H -->|"hændelsestype"| E2
+    H -->|"hændelsestype"| E3
+    H -->|"hændelsestype"| E4
+    H -->|"hændelsestype"| E5
+    H -->|"hændelsestype"| E6
+    H -->|"hændelsestype"| E7
+    H -->|"hændelsestype"| E8
+    H -->|"hændelsestype"| E9
+    H -->|"hændelsestype"| E10
+    H -->|"hændelsestype"| E11
+    H -->|"hændelsestype"| E12
+    H -->|"hændelsestype"| E13
+    H -->|"hændelsestype"| E14
+    H -->|"hændelsestype"| E15
+    H -->|"hændelsestype"| E16
+    H -->|"hændelsestype"| E17

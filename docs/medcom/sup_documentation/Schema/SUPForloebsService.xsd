@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.medcom.dk/SUP_30" xmlns="http://www.medcom.dk/SUP_30" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:annotation>
+		<xsd:documentation>SUP II version 3.0 schema for "Forloebs-Service".</xsd:documentation>
+	</xsd:annotation>
+	<xsd:include schemaLocation="SUPFaellesAttributter.xsd"/>
+	<xsd:include schemaLocation="SUPVurdering.xsd"/>
+	<xsd:annotation>
+		<xsd:documentation>
+		  Giver for et cpr-nummer personoplysninger og liste over alle forløb for en given periode.
+		</xsd:documentation>
+	</xsd:annotation>
+	<xsd:element name="Aflever_patientdata">
+		<xsd:complexType>
+			<xsd:sequence minOccurs="0">
+				<xsd:element ref="Person"/>
+			</xsd:sequence>
+			<xsd:attributeGroup ref="AfleverPatientdataAttributter"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Person">
+		<xsd:complexType>
+			<xsd:sequence minOccurs="0">
+				<xsd:element ref="PatientforloebOversigt" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element ref="CaveOplysninger" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+			<xsd:attributeGroup ref="PersonAttributter"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="PatientforloebOversigt">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="OprindeligAnsvarligEnhed"/>
+				<xsd:element ref="Diagnose" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+			<xsd:attribute name="Identifikation" type="xsd:string" use="required"/>
+			<xsd:attribute name="Starttidspunkt" type="SUPdateTime" use="optional"/>
+			<xsd:attribute name="Sluttidspunkt" type="SUPdateTime" use="optional"/>
+			<xsd:attribute name="Teknisk_forloeb" use="optional">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="X"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+			<xsd:attribute name="Foedesystem" type="xsd:string" use="required"/>
+			<xsd:attribute name="Udtraekstidspunkt" type="SUPdateTime" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

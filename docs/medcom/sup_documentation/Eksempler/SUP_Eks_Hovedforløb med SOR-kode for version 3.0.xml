@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Aflever_patientdata AfsenderSystem="MEDCOM-SUP-EXTRACT" ForsendelsesTid="2023-06-19T02:02:11+02:00" Identifikation="MEDCOMEPJS7026XX" TransaktionsType="Opdater" VersionsNummer="3.0" xsi:schemaLocation="http://www.medcom.dk/SUP_30 SUPAfleverPatientdataService.xsd" xmlns="http://www.medcom.dk/SUP_30" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Person Adresse="Adressebeskyttelse" CPRnummer="251248-9996" EgenLaegesNavn="Lægehuset MedCom" EgenLaegesYdernr="123456" Foedselsdato="1948-12-25T00:00:00" Koen="K" Kommune="Aarhus" Kommunekode="751" Navn="Nancy Ann Berggren">
+        <Patientforloeb Foedesystem="MEDCOM-EPJ" Identifikation="MEDCOMEPJS1234XX35746514" Sluttidspunkt="2023-06-18T19:34:00+02:00" Starttidspunkt="2023-06-18T13:26:00+02:00" Teknisk_forloeb="X" Udtraekstidspunkt="2023-06-19T02:01:17+02:00">
+            <OprindeligAnsvarligEnhed>
+                <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+            </OprindeligAnsvarligEnhed>
+            <Kontaktperiode Afslutningstidspunkt="2023-06-18T19:34:00+02:00" StartTidspunkt="2023-06-18T13:26:00+02:00">
+                <Haendelse Identifikation="KP-3006049637" Registreringstidspunkt="2023-06-18T13:34:53+02:00">
+                    <HaendelseRegistreretAf>
+                        <Registrerings_Enhed>
+                            <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+                        </Registrerings_Enhed>
+                    </HaendelseRegistreretAf>
+                </Haendelse>
+                <ForloebsStatus>
+                    <KodetVaerdi Kode="I" Kodetekst="Indlagt">
+                        <Klassificering>
+                            <Klassifikation Forkortelse="SUP" Navn="SUP Klassifikation"/>
+                        </Klassificering>
+                    </KodetVaerdi>
+                </ForloebsStatus>
+                <Prioritet>
+                    <KodetVaerdi Kode="XSUP00P3" Kodetekst="Planlagt">
+                        <Klassificering>
+                            <Klassifikation Forkortelse="SUP" Navn="SUP Klassifikation"/>
+                        </Klassificering>
+                    </KodetVaerdi>
+                </Prioritet>
+                <Laegelig_Ansvarlig_for_kontaktperiode Stamsted="Infektionsmedicinsk Sengeafdeling - Skejby">
+                    <Laegelig_kontaktansvarlig_Enhed>
+                        <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+                    </Laegelig_kontaktansvarlig_Enhed>
+                </Laegelig_Ansvarlig_for_kontaktperiode>
+            </Kontaktperiode>
+            <Diagnose Diagnosetidspunkt="2023-06-18T13:26:00+02:00">
+                <Haendelse Identifikation="DI-3006049858" Registreringstidspunkt="2023-06-18T13:34:53+02:00">
+                    <HaendelseRegistreretAf>
+                        <Registrerings_Enhed>
+                            <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+                        </Registrerings_Enhed>
+                    </HaendelseRegistreretAf>
+                </Haendelse>
+                <Art>
+                    <KodetVaerdi Kode="A" Kodetekst="Aktionsdiagnose">
+                        <Klassificering>
+                            <Klassifikation Forkortelse="SST" Navn="SST"/>
+                        </Klassificering>
+                    </KodetVaerdi>
+                </Art>
+                <DiagnoseKode>
+                    <SammensatKodetVaerdi>
+                        <Primaerkode>
+                            <KodetVaerdi Kode="DG254" Kodetekst="Chorea forårsaget af lægemiddel">
+                                <Klassificering>
+                                    <Klassifikation Forkortelse="SKS" Navn="SKS"/>
+                                </Klassificering>
+                            </KodetVaerdi>
+                        </Primaerkode>
+                    </SammensatKodetVaerdi>
+                </DiagnoseKode>
+                <Diagnosticering_udfoert_af>
+                    <Ansvarlig_Enhed>
+                        <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+                    </Ansvarlig_Enhed>
+                </Diagnosticering_udfoert_af>
+            </Diagnose>
+            <Diagnose Diagnosetidspunkt="2023-06-18T13:26:00+02:00">
+                <Haendelse Identifikation="DI-3006049868" Registreringstidspunkt="2023-06-18T13:34:53+02:00">
+                    <HaendelseRegistreretAf>
+                        <Registrerings_Enhed>
+                            <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+                        </Registrerings_Enhed>
+                    </HaendelseRegistreretAf>
+                </Haendelse>
+                <Art>
+                    <KodetVaerdi Kode="B" Kodetekst="Bidiagnose">
+                        <Klassificering>
+                            <Klassifikation Forkortelse="SST" Navn="SST"/>
+                        </Klassificering>
+                    </KodetVaerdi>
+                </Art>
+                <DiagnoseKode>
+                    <SammensatKodetVaerdi>
+                        <Primaerkode>
+                            <KodetVaerdi Kode="DQ845B" Kodetekst="Medfødt neglehypertrofi">
+                                <Klassificering>
+                                    <Klassifikation Forkortelse="SKS" Navn="SKS"/>
+                                </Klassificering>
+                            </KodetVaerdi>
+                        </Primaerkode>
+                    </SammensatKodetVaerdi>
+                </DiagnoseKode>
+                <Diagnosticering_udfoert_af>
+                    <Ansvarlig_Enhed>
+                        <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+                    </Ansvarlig_Enhed>
+                </Diagnosticering_udfoert_af>
+            </Diagnose>
+            <Diagnose Diagnosetidspunkt="2023-06-18T13:26:00+02:00">
+                <Haendelse Identifikation="DI-3006049878" Registreringstidspunkt="2023-06-18T13:34:53+02:00">
+                    <HaendelseRegistreretAf>
+                        <Registrerings_Enhed>
+                            <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+                        </Registrerings_Enhed>
+                    </HaendelseRegistreretAf>
+                </Haendelse>
+                <Art>
+                    <KodetVaerdi Kode="B" Kodetekst="Bidiagnose">
+                        <Klassificering>
+                            <Klassifikation Forkortelse="SST" Navn="SST"/>
+                        </Klassificering>
+                    </KodetVaerdi>
+                </Art>
+                <DiagnoseKode>
+                    <SammensatKodetVaerdi>
+                        <Primaerkode>
+                            <KodetVaerdi Kode="DI362" Kodetekst="Ikke-reumatisk trikuspidalklapstenose med insufficiens">
+                                <Klassificering>
+                                    <Klassifikation Forkortelse="SKS" Navn="SKS"/>
+                                </Klassificering>
+                            </KodetVaerdi>
+                        </Primaerkode>
+                    </SammensatKodetVaerdi>
+                </DiagnoseKode>
+                <Diagnosticering_udfoert_af>
+                    <Ansvarlig_Enhed>
+                        <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+                    </Ansvarlig_Enhed>
+                </Diagnosticering_udfoert_af>
+            </Diagnose>
+            <Udfoert_procedure Starttidspunkt="2023-06-18T13:28:00+02:00">
+                <Haendelse Identifikation="UP-30060670086" Registreringstidspunkt="2023-06-18T13:28:00+02:00">
+                    <HaendelseRegistreretAf Registrerende_behandler="Anders Andersen">
+                        <Registrerings_Enhed>
+                            <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+                        </Registrerings_Enhed>
+                    </HaendelseRegistreretAf>
+                </Haendelse>
+                <Art>
+                    <KodetVaerdi Kode="P" Kodetekst="Primær operation">
+                        <Klassificering>
+                            <Klassifikation Forkortelse="SST" Navn="SST"/>
+                        </Klassificering>
+                    </KodetVaerdi>
+                </Art>
+                <Procedure_kode>
+                    <SammensatKodetVaerdi>
+                        <Primaerkode>
+                            <KodetVaerdi Kode="BWHA214" Kodetekst="Behandling med topotecan+cisplatin+etoposid+carboplatin">
+                                <Klassificering>
+                                    <Klassifikation Forkortelse="SKS" Navn="SKS"/>
+                                </Klassificering>
+                            </KodetVaerdi>
+                        </Primaerkode>
+                    </SammensatKodetVaerdi>
+                </Procedure_kode>
+                <Udfoert_procedure_produceret_af>
+                    <Producerende_Behandler>
+                        <AnsvarligPerson Navn="Anders Andersen" Titel="Læge"/>
+                    </Producerende_Behandler>
+                    <Producerende_Enhed>
+                        <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+                    </Producerende_Enhed>
+                </Udfoert_procedure_produceret_af>
+            </Udfoert_procedure>
+            <Udfoert_procedure Starttidspunkt="2023-06-18T13:28:00+02:00">
+                <Haendelse Identifikation="UP-3006049927" Registreringstidspunkt="2023-06-18T13:28:07+02:00">
+                    <HaendelseRegistreretAf Registrerende_behandler="Anders Andersen">
+                        <Registrerings_Enhed>
+                            <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+                        </Registrerings_Enhed>
+                    </HaendelseRegistreretAf>
+                </Haendelse>
+                <Art>
+                    <KodetVaerdi Kode="P" Kodetekst="Primær operation">
+                        <Klassificering>
+                            <Klassifikation Forkortelse="SST" Navn="SST"/>
+                        </Klassificering>
+                    </KodetVaerdi>
+                </Art>
+                <Procedure_kode>
+                    <SammensatKodetVaerdi>
+                        <Primaerkode>
+                            <KodetVaerdi Kode="BTNB00" Kodetekst="Fremstilling af hjælpemiddel til kompenserende behandling">
+                                <Klassificering>
+                                    <Klassifikation Forkortelse="SKS" Navn="SKS"/>
+                                </Klassificering>
+                            </KodetVaerdi>
+                        </Primaerkode>
+                    </SammensatKodetVaerdi>
+                </Procedure_kode>
+                <Udfoert_procedure_produceret_af>
+                    <Producerende_Behandler>
+                        <AnsvarligPerson Navn="Anders Andersen" Titel="Læge"/>
+                    </Producerende_Behandler>
+                    <Producerende_Enhed>
+                        <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+                    </Producerende_Enhed>
+                </Udfoert_procedure_produceret_af>
+            </Udfoert_procedure>
+            <Notat Broedtekst="&lt;html&gt;&lt;p&gt;Beskrivelse: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quis massa eget sapien tempus consectetur. Morbi mattis lorem in augue maximus, vitae blandit orci auctor. Mauris varius mi quis dui suscipit, ut commodo risus sodales. Sed tellus augue, venenatis sollicitudin dictum et, rhoncus ut tortor. Sed lacinia lobortis erat, nec faucibus lorem aliquet eget. Mauris consectetur, massa ac dictum malesuada, urna arcu dignissim tellus, et consectetur arcu augue sed libero. Aenean congue hendrerit porttitor. Curabitur varius maximus tellus sollicitudin varius.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;b&gt;Resultat - Bevægelsesopfattelse:&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Beskrivelse: Vestibulum in rutrum massa. Integer vitae lectus ultrices, tristique odio quis, pretium magna. Integer posuere nibh et justo scelerisque, vel congue lacus luctus. Pellentesque commodo vel augue ut sollicitudin. Suspendisse efficitur erat nec eleifend gravida. Donec sed sem et massa cursus mollis eget eget neque. Nulla lacinia, elit vitae egestas imperdiet, mi leo volutpat est, eu feugiat nisl nulla eu urna. Donec sagittis, turpis vitae commodo feugiat, mi lacus tincidunt augue, eget feugiat ante nulla eget leo. Maecenas at interdum metus, in aliquam urna. Nullam eleifend eu felis in elementum. Phasellus mattis mauris vel odio blandit, vitae facilisis tellus placerat. Aenean dignissim placerat lacus vel venenatis.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;b&gt;Behandling med topotecan+cisplatin+etoposid+carboplatin:&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Beskrivelse: Etiam tempus mauris at nisi interdum ultrices. Maecenas imperdiet, justo ac tristique laoreet, ligula turpis dictum leo, eget accumsan dolor turpis feugiat ligula. In hac habitasse platea dictumst. Cras condimentum, massa a bibendum fermentum, felis lectus bibendum velit, ut euismod enim leo eget nunc. Duis dignissim fringilla quam, vel blandit ex dapibus at. Vestibulum dui enim, euismod non ultricies at, faucibus non quam. Aenean et odio orci. Duis non massa non ipsum dignissim elementum. Cras in tincidunt sem. Nunc ultricies feugiat metus, nec fermentum sem euismod et. Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;&lt;/html&gt;" KonstateringsTidspunkt="2023-06-18T13:28:00+02:00" Overskrift="Resultat - Udføre andre specificerede daglige rutiner">
+                <Haendelse Identifikation="NO-3006067002" Registreringstidspunkt="2023-06-18T13:28:00+02:00">
+                    <HaendelseRegistreretAf Registrerende_behandler="Anders Andersen">
+                        <Registrerings_Enhed>
+                            <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+                        </Registrerings_Enhed>
+                    </HaendelseRegistreretAf>
+                </Haendelse>
+                <Notat_produceret_af ProcedureSted="Infektionsmedicinsk Sengeafdeling - Skejby">
+                    <Producerende_Behandler>
+                        <AnsvarligPerson Navn="Anders Andersen" Titel="Læge"/>
+                    </Producerende_Behandler>
+                    <Producerende_Enhed>
+                        <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+                    </Producerende_Enhed>
+                </Notat_produceret_af>
+                <Procedurekode>
+                    <KodetVaerdi Kode="FA2308" Kodetekst="Udføre andre specificerede daglige rutiner">
+                        <Klassificering>
+                            <Klassifikation Forkortelse="SKS" Navn="SKS"/>
+                        </Klassificering>
+                    </KodetVaerdi>
+                </Procedurekode>
+            </Notat>
+            <Notat Broedtekst="&lt;b&gt;Afsendt: &lt;/b&gt;&lt;pre&gt;18.06.2023 13:35&lt;/pre&gt;&lt;br/&gt;&lt;b&gt;Afsender: &lt;/b&gt;&lt;pre&gt;7026151&lt;/pre&gt;&lt;pre&gt;Infektionsmedicinsk Sengeafdeling - Skejby&lt;/pre&gt;&lt;br/&gt;&lt;b&gt;Modtager(e): &lt;/b&gt;&lt;pre&gt;&lt;pre&gt;Lægehuset MedCom, Forskerparken 10, 5230 Odense M&lt;/pre&gt;&lt;/pre&gt;&lt;br/&gt;&lt;b&gt;Indlagt: &lt;/b&gt;&lt;pre&gt;18.06.2023 13:26&lt;/pre&gt;&lt;br/&gt;&lt;b&gt;Udskrevet: &lt;/b&gt;&lt;pre&gt;18.06.2023 13:34&lt;/pre&gt;&lt;br/&gt;&lt;b&gt;Diagnose(r): &lt;/b&gt;&lt;pre&gt;&lt;pre&gt;A DG254 Chorea forårsaget af lægemiddel&lt;/pre&gt;&lt;pre&gt;B DQ845B Medfødt neglehypertrofi&lt;/pre&gt;&lt;pre&gt;B DI362 Ikke-reumatisk trikuspidalklapstenose med insufficiens&lt;/pre&gt;&lt;/pre&gt;&lt;br/&gt;&lt;b&gt;Underskriver: &lt;/b&gt;&lt;pre&gt;Anders Andersen&lt;/pre&gt;&lt;pre&gt;Læge&lt;/pre&gt;&lt;pre&gt;18.06.2023&lt;/pre&gt;" KonstateringsTidspunkt="2023-06-18T13:35:20+02:00" Overskrift="Udskrivningsepikrise">
+                <Haendelse Identifikation="EP-3006049687" Registreringstidspunkt="2023-06-18T13:35:20+02:00">
+                    <HaendelseRegistreretAf Registrerende_behandler="Gitte U. Danielsen">
+                        <Registrerings_Enhed>
+                            <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+                        </Registrerings_Enhed>
+                    </HaendelseRegistreretAf>
+                </Haendelse>
+                <Notat_produceret_af ProcedureSted="Infektionsmedicinsk Sengeafdeling - Skejby">
+                    <Producerende_Behandler>
+                        <AnsvarligPerson Navn="Anders Andersen" Titel="Læge"/>
+                    </Producerende_Behandler>
+                    <Producerende_Enhed>
+                        <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+                    </Producerende_Enhed>
+                </Notat_produceret_af>
+            </Notat>
+        </Patientforloeb>
+    </Person>
+</Aflever_patientdata>
+
+

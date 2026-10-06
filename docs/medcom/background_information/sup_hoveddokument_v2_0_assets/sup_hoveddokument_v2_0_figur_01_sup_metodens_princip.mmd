@@ -1,0 +1,14 @@
+flowchart LR
+    A["System A"]
+    E["SUP-elementer"]
+    BM["Begrebsmodel"]
+    TS["Tekniske specifikationer"]
+    KM["Kommunikationsmodel"]
+    R["Regelsæt"]
+    B["Browser / System B"]
+    A -->|"udtræk og repræsentation"| E
+    BM -->|"semantik"| E
+    TS -->|"format"| E
+    KM -->|"kommunikation"| E
+    R -->|"regler"| E
+    E -->|"fremvisning / overførsel"| B

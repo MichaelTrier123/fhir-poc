@@ -1,0 +1,8 @@
+flowchart LR
+    U["Udført procedure"]
+    O["Observation/fund"]
+    P["Prøveresultat"]
+    A["Anamnestisk oplysning"]
+    U -->|"udløsende procedure 0..1 : 0..n"| O
+    U -->|"prøveresultat til procedure 0..1 : 0..n"| P
+    U -->|"procedure hvor oplysning blev givet 0..1 : 0..n"| A

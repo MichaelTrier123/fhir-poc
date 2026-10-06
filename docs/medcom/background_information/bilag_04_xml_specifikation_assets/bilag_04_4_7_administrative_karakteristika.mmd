@@ -1,0 +1,13 @@
+flowchart LR
+  ROOT["Administrativ_karakteristikum"]
+  ROOT --> H["Haendelse"]
+  ROOT --> K["Karakteristikum_kode"]
+  ROOT -.-> A["Aarsag"]
+  ROOT -.-> AA["AfslutningsAarsag"]
+  ROOT --> KF["Administrativ_karakteristikum_konstateret_af"]
+  KF -.-> KB["Konstaterende_Behandler"]
+  KF --> KE["Konstaterende_Enhed"]
+  ROOT -.-> AF["Administrativ_karakteristikum_afsluttet_af"]
+  AF -.-> AB["Afsluttende_Behandler"]
+  AF --> AE["Afsluttende_Enhed"]
+  ROOT -.-> U["Udloesende_rekv_eller_procedure"]

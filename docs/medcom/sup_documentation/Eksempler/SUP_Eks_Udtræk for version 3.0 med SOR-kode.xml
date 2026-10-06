@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Aflever_patientdata AfsenderSystem="MEDCOM-SUP-EXTRACT" ForsendelsesTid="2025-10-08T19:34:11+02:00" Identifikation="MEDCOMEPJS702622" TransaktionsType="OpdaterSpecielt" VersionsNummer="3.0" xsi:schemaLocation="http://www.medcom.dk/SUP_30 SUPAfleverPatientdataService.xsd" xmlns="http://www.medcom.dk/SUP_30" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Person Adresse="Strandvej 22" CPRnummer="251248-9996" EgenLaegesNavn="Lægehuset MedCom" EgenLaegesYdernr="123456" Foedselsdato="1948-12-25T00:00:00" Koen="K" Kommune="Svendborg" Kommunekode="479" Navn="Nancy Ann Berggren">
+        <Patientforloeb Foedesystem="MEDCOM-EPJ" Identifikation="MEDCOMEPJS7026XX3498184777" Sluttidspunkt="2025-10-08T19:34:00+02:00" Starttidspunkt="2025-10-01T13:26:00+02:00" Teknisk_forloeb="X" Udtraekstidspunkt="2025-10-08T19:34:11+02:00">
+            <OprindeligAnsvarligEnhed>
+                <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+            </OprindeligAnsvarligEnhed>
+            <Kontaktperiode Afslutningstidspunkt="2025-10-08T19:34:00+02:00" StartTidspunkt="2025-10-01T13:26:00+02:00">
+                <Haendelse Identifikation="KP-3006049637" FriTekst="Dette er en fritekst vedr. hændelsen" Registreringstidspunkt="2025-10-01T13:26:00+02:00">
+                    <HaendelseRegistreretAf Registrerende_behandler="HSM Læge"> 
+                        <Registrerings_Enhed>
+                            <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+                        </Registrerings_Enhed>
+                    </HaendelseRegistreretAf>
+                </Haendelse>
+                <ForloebsStatus>
+                    <KodetVaerdi Kode="I" Kodetekst="Indlagt">
+                        <Klassificering>
+                            <Klassifikation Forkortelse="SUP" Navn="SUP Klassifikation"/>
+                        </Klassificering>
+                    </KodetVaerdi>
+                </ForloebsStatus>
+                <Prioritet>
+                    <KodetVaerdi Kode="XSUP00P3" Kodetekst="Planlagt">
+                        <Klassificering>
+                            <Klassifikation Forkortelse="SUP" Navn="SUP Klassifikation"/>
+                        </Klassificering>
+                    </KodetVaerdi>
+                </Prioritet>
+                <AfslutningsAarsag>
+                    <KodetVaerdi Kode="ALAC50" Kodetekst="Afsluttet til hjemmet">
+                        <Klassificering>
+                            <Klassifikation Forkortelse="SKS" Navn="Sundhedsvæsenets Klassifikationssystem"/>
+                        </Klassificering>
+                    </KodetVaerdi>
+                </AfslutningsAarsag>
+                <Laegelig_Ansvarlig_for_kontaktperiode Stamsted="Røntgen afdeling - Rigshospitalet">
+                    <Laegelig_ansvarlig_behandler>
+                        <AnsvarligPerson Identifikation="HSML" Navn="HSM" Titel="Læge"/>
+                    </Laegelig_ansvarlig_behandler>
+                    <Laegelig_kontaktansvarlig_Enhed>
+                        <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+                    </Laegelig_kontaktansvarlig_Enhed>
+                </Laegelig_Ansvarlig_for_kontaktperiode>
+            </Kontaktperiode>
+            <Diagnose Diagnosetidspunkt="2025-10-01T13:26:00+02:00" Afsluttidspunkt="2025-10-08T13:26:00+02:00">
+                <Haendelse Identifikation="DI-3006049858" FriTekst="Dette er en fritekst til Diagnose" Registreringstidspunkt="2025-10-01T13:36:00+02:00">
+                    <HaendelseRegistreretAf>
+                        <Registrerings_Enhed>
+                            <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+                        </Registrerings_Enhed>
+                    </HaendelseRegistreretAf>
+                </Haendelse>
+                <Art>
+                    <KodetVaerdi Kode="A" Kodetekst="Aktionsdiagnose">
+                        <Klassificering>
+                            <Klassifikation Forkortelse="SST" Navn="Sundhedsstyrelsen"/>
+                        </Klassificering>
+                    </KodetVaerdi>
+                </Art>
+                <DiagnoseKode>
+                    <SammensatKodetVaerdi>
+                        <Primaerkode>
+                            <KodetVaerdi Kode="DG254" Kodetekst="Chorea forårsaget af lægemiddel">
+                                <Klassificering>
+                                    <Klassifikation Forkortelse="SKS" Navn="Sundhedsvæsenets Klassifikationssystem"/>
+                                </Klassificering>
+                            </KodetVaerdi>
+                        </Primaerkode>
+                        <Tillaegskode>
+                            <KodetVaerdi Kode="ZDW53" Kodetekst="Akut (acuta)">
+                                <Klassificering>
+                                    <Klassifikation Forkortelse="SKS" Navn="Sundhedsvæsenets Klassifikationssystem"/>
+                                </Klassificering>
+                            </KodetVaerdi>
+                        </Tillaegskode>
+                    </SammensatKodetVaerdi>
+                </DiagnoseKode>
+                <Diagnosticering_udfoert_af>
+                    <Ansvarlig_Behandler>
+                        <AnsvarligPerson Identifikation="HSML" Navn="HSM" Titel="Læge"/>
+                    </Ansvarlig_Behandler>
+                    <Ansvarlig_Enhed>
+                        <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+                    </Ansvarlig_Enhed>
+                </Diagnosticering_udfoert_af>
+            </Diagnose>
+            <Diagnose Diagnosetidspunkt="2025-10-03T13:26:00+02:00">
+                <Haendelse Identifikation="DI-3006049868" Registreringstidspunkt="2025-10-03T13:36:00+02:00">
+                    <HaendelseRegistreretAf>
+                        <Registrerings_Enhed>
+                            <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+                        </Registrerings_Enhed>
+                    </HaendelseRegistreretAf>
+                </Haendelse>
+                <Art>
+                    <KodetVaerdi Kode="B" Kodetekst="Bidiagnose">
+                        <Klassificering>
+                            <Klassifikation Forkortelse="SST" Navn="Sundhedsstyrelsen"/>
+                        </Klassificering>
+                    </KodetVaerdi>
+                </Art>
+                <DiagnoseKode>
+                    <SammensatKodetVaerdi>
+                        <Primaerkode>
+                            <KodetVaerdi Kode="DQ845B" Kodetekst="Medfødt neglehypertrofi">
+                                <Klassificering>
+                                    <Klassifikation Forkortelse="SKS" Navn="Sundhedsvæsenets Klassifikationssystem"/>
+                                </Klassificering>
+                            </KodetVaerdi>
+                        </Primaerkode>
+                    </SammensatKodetVaerdi>
+                </DiagnoseKode>
+                <Diagnosticering_udfoert_af>
+                    <Ansvarlig_Enhed>
+                        <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+                    </Ansvarlig_Enhed>
+                </Diagnosticering_udfoert_af>
+            </Diagnose>
+            <Diagnose Diagnosetidspunkt="2025-10-05T13:26:00+02:00">
+                <Haendelse Identifikation="DI-3006049878" Registreringstidspunkt="2025-10-03T13:36:00+02:00">
+                    <HaendelseRegistreretAf>
+                        <Registrerings_Enhed>
+                            <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+                        </Registrerings_Enhed>
+                    </HaendelseRegistreretAf>
+                </Haendelse>
+                <Art>
+                    <KodetVaerdi Kode="B" Kodetekst="Bidiagnose">
+                        <Klassificering>
+                            <Klassifikation Forkortelse="SST" Navn="Sundhedsstyrelsen"/>
+                        </Klassificering>
+                    </KodetVaerdi>
+                </Art>
+                <DiagnoseKode>
+                    <SammensatKodetVaerdi>
+                        <Primaerkode>
+                            <KodetVaerdi Kode="DI362" Kodetekst="Ikke-reumatisk trikuspidalklapstenose med insufficiens">
+                                <Klassificering>
+                                    <Klassifikation Forkortelse="SKS" Navn="Sundhedsvæsenets Klassifikationssystem"/>
+                                </Klassificering>
+                            </KodetVaerdi>
+                        </Primaerkode>
+                    </SammensatKodetVaerdi>
+                </DiagnoseKode>
+                <Diagnosticering_udfoert_af>
+                    <Ansvarlig_Enhed>
+                        <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+                    </Ansvarlig_Enhed>
+                </Diagnosticering_udfoert_af>
+            </Diagnose>
+            <Udfoert_procedure Starttidspunkt="2025-10-01T13:28:00+02:00" Sluttidspunkt="2025-10-01T14:28:00+02:00">
+                <Haendelse Identifikation="UP-30060670086" FriTekst="Dette er en fritekst til udførte procedure" Registreringstidspunkt="2025-10-01T13:28:00+02:00">
+                    <HaendelseRegistreretAf Registrerende_behandler="Anders Andersen">
+                        <Registrerings_Enhed>
+                            <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+                        </Registrerings_Enhed>
+                    </HaendelseRegistreretAf>
+                </Haendelse>
+                <Art>
+                    <KodetVaerdi Kode="P" Kodetekst="Primær operation">
+                        <Klassificering>
+                            <Klassifikation Forkortelse="SST" Navn="Sundhedsstyrelsen"/>
+                        </Klassificering>
+                    </KodetVaerdi>
+                </Art>
+                <Procedure_kode>
+                    <SammensatKodetVaerdi>
+                        <Primaerkode>
+                            <KodetVaerdi Kode="BWHA214" Kodetekst="Behandling med topotecan+cisplatin+etoposid+carboplatin">
+                                <Klassificering>
+                                    <Klassifikation Forkortelse="SKS" Navn="Sundhedsvæsenets Klassifikationssystem"/>
+                                </Klassificering>
+                            </KodetVaerdi>
+                        </Primaerkode>
+                        <Tillaegskode>
+                            <KodetVaerdi Kode="BZAX1" Kodetekst="Intralæsionalt">
+                                <Klassificering>
+                                    <Klassifikation Forkortelse="SKS" Navn="Sundhedsvæsenets Klassifikationssystem"/>
+                                </Klassificering>
+                            </KodetVaerdi>
+                        </Tillaegskode>
+                    </SammensatKodetVaerdi>
+                </Procedure_kode>
+                <Udfoert_procedure_produceret_af>
+                    <Producerende_Behandler>
+                        <AnsvarligPerson Navn="Anders Andersen" Titel="Læge"/>
+                    </Producerende_Behandler>
+                    <Producerende_Enhed>
+                        <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+                    </Producerende_Enhed>
+                </Udfoert_procedure_produceret_af>
+            </Udfoert_procedure>
+            <Udfoert_procedure Starttidspunkt="2019-06-18T13:28:00+02:00">
+                <Haendelse Identifikation="UP-3006049927" Registreringstidspunkt="2019-06-18T13:28:07+02:00">
+                    <HaendelseRegistreretAf Registrerende_behandler="Anders Andersen">
+                        <Registrerings_Enhed>
+                            <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+                        </Registrerings_Enhed>
+                    </HaendelseRegistreretAf>
+                </Haendelse>
+                <Art>
+                    <KodetVaerdi Kode="P" Kodetekst="Primær operation">
+                        <Klassificering>
+                            <Klassifikation Forkortelse="SST" Navn="Sundhedsstyrelsen"/>
+                        </Klassificering>
+                    </KodetVaerdi>
+                </Art>
+                <Procedure_kode>
+                    <SammensatKodetVaerdi>
+                        <Primaerkode>
+                            <KodetVaerdi Kode="BTNB00" Kodetekst="Fremstilling af hjælpemiddel til kompenserende behandling">
+                                <Klassificering>
+                                    <Klassifikation Forkortelse="SKS" Navn="Sundhedsvæsenets Klassifikationssystem"/>
+                                </Klassificering>
+                            </KodetVaerdi>
+                        </Primaerkode>
+                    </SammensatKodetVaerdi>
+                </Procedure_kode>
+                <Udfoert_procedure_produceret_af>
+                    <Producerende_Behandler>
+                        <AnsvarligPerson Navn="Anders Andersen" Titel="Læge"/>
+                    </Producerende_Behandler>
+                    <Producerende_Enhed>
+                        <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+                    </Producerende_Enhed>
+                </Udfoert_procedure_produceret_af>
+            </Udfoert_procedure>
+            <Notat Broedtekst="Pt. er blevet udskrevet" KonstateringsTidspunkt="2025-10-08T19:34:00+02:00" Overskrift="Notat123">
+                <Haendelse Identifikation="NO-3006067002" FriTekst="Dette er en fritekst til Notatets hændelse" Registreringstidspunkt="2025-10-08T19:34:00+02:00">
+                    <HaendelseRegistreretAf Registrerende_behandler="HSM">
+                        <Registrerings_Enhed>
+                            <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+                        </Registrerings_Enhed>
+                    </HaendelseRegistreretAf>
+                </Haendelse>
+                <Notat_produceret_af ProcedureSted="Røntgen afdeling - Rigshospitalet">
+                    <Producerende_Behandler>
+                        <AnsvarligPerson Navn="HSM" Titel="Læge"/>
+                    </Producerende_Behandler>
+                    <Producerende_Enhed>
+                        <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+                    </Producerende_Enhed>
+                </Notat_produceret_af>
+                <Procedurekode>
+                    <KodetVaerdi Kode="FA2308" Kodetekst="Udføre andre specificerede daglige rutiner">
+                        <Klassificering>
+                            <Klassifikation Forkortelse="SKS" Navn="Sundhedsvæsenets Klassifikationssystem"/>
+                        </Klassificering>
+                    </KodetVaerdi>
+                </Procedurekode>
+            </Notat>
+            <Notat Broedtekst="&lt;b&gt;Afsendt: &lt;/b&gt;&lt;pre&gt;18.06.2019 13:35&lt;/pre&gt;&lt;br/&gt;&lt;b&gt;Afsender: &lt;/b&gt;&lt;pre&gt;7026151&lt;/pre&gt;&lt;pre&gt;Røntgen afdeling - Rigshospitalet&lt;/pre&gt;&lt;br/&gt;&lt;b&gt;Modtager(e): &lt;/b&gt;&lt;pre&gt;&lt;pre&gt;Lægehuset MedCom, Forskerparken 10, 5230 Odense M&lt;/pre&gt;&lt;/pre&gt;&lt;br/&gt;&lt;b&gt;Indlagt: &lt;/b&gt;&lt;pre&gt;18.06.2019 13:26&lt;/pre&gt;&lt;br/&gt;&lt;b&gt;Udskrevet: &lt;/b&gt;&lt;pre&gt;18.06.2019 13:34&lt;/pre&gt;&lt;br/&gt;&lt;b&gt;Diagnose(r): &lt;/b&gt;&lt;pre&gt;&lt;pre&gt;A DG254 Chorea forårsaget af lægemiddel&lt;/pre&gt;&lt;pre&gt;B DQ845B Medfødt neglehypertrofi&lt;/pre&gt;&lt;pre&gt;B DI362 Ikke-reumatisk trikuspidalklapstenose med insufficiens&lt;/pre&gt;&lt;/pre&gt;&lt;br/&gt;&lt;b&gt;Underskriver: &lt;/b&gt;&lt;pre&gt;Anders Andersen&lt;/pre&gt;&lt;pre&gt;Læge&lt;/pre&gt;&lt;pre&gt;18.06.2019&lt;/pre&gt;" KonstateringsTidspunkt="2025-10-08T19:35:20+02:00" Overskrift="Røntgenepikrise">
+                <Haendelse Identifikation="EP-3006049687" Registreringstidspunkt="2025-10-08T19:35:20+02:00">
+                    <HaendelseRegistreretAf Registrerende_behandler="Gitte U. Danielsen">
+                        <Registrerings_Enhed>
+                            <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+                        </Registrerings_Enhed>
+                    </HaendelseRegistreretAf>
+                </Haendelse>
+                <Notat_produceret_af ProcedureSted="Røntgen afdeling - Rigshospitalet">
+                    <Producerende_Behandler>
+                        <AnsvarligPerson Navn="Anders Andersen" Titel="Læge"/>
+                    </Producerende_Behandler>
+                    <Producerende_Enhed>
+                        <Organisatorisk_Enhed Afdeling_tekst="Røntgen afdeling" Institution_tekst="Rigshospitalet" Kode="435651000016000" KodeType="sorkode"/>
+                    </Producerende_Enhed>
+                </Notat_produceret_af>
+            </Notat>
+        </Patientforloeb>
+    </Person>
+</Aflever_patientdata>
+
+

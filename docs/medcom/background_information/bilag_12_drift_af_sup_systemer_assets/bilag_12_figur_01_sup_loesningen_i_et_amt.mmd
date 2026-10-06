@@ -1,0 +1,9 @@
+flowchart LR
+  EPJ[EPJ-/fødesystem] -->|SF1| EXT[Udtræksprogram (1)]
+  EXT -->|XML via FTP| DB[(SUP-database (2))]
+  DB -->|SF2 / webservices| WEB[SUP-webapplikation (5)]
+  WEB --> USER[Bruger via browser (6)]
+  DB --> ANA[SUP analysedata (3)]
+  TABEXT[Tabel over udtræksprogrammer (4)] --> DB
+  USERS[Tabel over brugere (7)] --> WEB
+  AFDB[SUP afdelingsbeskrivelse (8)] --> WEB

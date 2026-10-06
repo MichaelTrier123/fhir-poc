@@ -1,0 +1,10 @@
+# Asset-manifest
+
+| Fil | PDF-side | Indhold | Billed-/diagram-beskrivelse |
+|---|---:|---|---|
+| `sup_hoveddokument_v2_0_figur_01_sup_metodens_princip_side_17.png` | 17 | Figur 1 - SUP-metodens grundlæggende princip | Figuren viser, at informationselementer fra System A repræsenteres som SUP-elementer under styring af begrebsmodel, tekniske specifikationer, kommunikationsmodel og regelsæt, hvorefter de kan fremvises eller overføres til andre systemer. |
+| `sup_hoveddokument_v2_0_figur_01_sup_metodens_princip.mmd` | 17 | Figur 1 - SUP-metodens grundlæggende princip - Mermaid | Figuren viser, at informationselementer fra System A repræsenteres som SUP-elementer under styring af begrebsmodel, tekniske specifikationer, kommunikationsmodel og regelsæt, hvorefter de kan fremvises eller overføres til andre systemer. |
+| `sup_hoveddokument_v2_0_figur_02_forenklet_begrebsmodel_side_19.png` | 19 | Figur 2 - Forenklet begrebsmodel | Figuren viser Person -> Patientforløb -> Hændelse og de 18 hændelsestyper. Originalen viser desuden enkelte valgfrie årsagsrelationer mellem hændelsestyperne. |
+| `sup_hoveddokument_v2_0_figur_02_forenklet_begrebsmodel.mmd` | 19 | Figur 2 - Forenklet begrebsmodel - Mermaid | Figuren viser Person -> Patientforløb -> Hændelse og de 18 hændelsestyper. Originalen viser desuden enkelte valgfrie årsagsrelationer mellem hændelsestyperne. |
+| `sup_hoveddokument_v2_0_figur_03_kommunikationsmodel_side_21.png` | 21 | Figur 3 - Kommunikationsmodellen i SUP | Kommunikationsmodellen viser dataflow fra fødesystemer via udtræksprogrammer og SUP-XML/FTP til SUP-database, samt adgang via browser, Sundhedsportalen, EPJ-systemer, andre SUP-databaser og analyse. Numrene svarer til forklaringspunkterne i kilden. |
+| `sup_hoveddokument_v2_0_figur_03_kommunikationsmodel.mmd` | 21 | Figur 3 - Kommunikationsmodellen i SUP - Mermaid | Kommunikationsmodellen viser dataflow fra fødesystemer via udtræksprogrammer og SUP-XML/FTP til SUP-database, samt adgang via browser, Sundhedsportalen, EPJ-systemer, andre SUP-databaser og analyse. Numrene svarer til forklaringspunkterne i kilden. |

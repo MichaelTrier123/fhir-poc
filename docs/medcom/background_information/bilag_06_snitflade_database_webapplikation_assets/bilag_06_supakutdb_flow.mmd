@@ -1,0 +1,12 @@
+sequenceDiagram
+    participant B as Bruger / SUP-webapplikation
+    participant DB as SUP-database
+    participant FS as Fødesystem
+    B->>DB: SUPakutDB(CPR, afdeling, informationssystem)
+    DB->>FS: Viderestil akutforespørgsel
+    FS-->>DB: Data findes ikke / akut-udtræk igangsat
+    alt Akut-udtræk igangsat
+        FS->>DB: Seneste patientdata overføres
+    end
+    B->>DB: Meddelelser-Service(CPR)
+    DB-->>B: Udtræksstatus

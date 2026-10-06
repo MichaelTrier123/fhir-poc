@@ -1,0 +1,10 @@
+flowchart LR
+    D["Diagnose"]
+    U["Udført procedure"]
+    E["Diagnose ansvarlig Enhed"]
+    A["Afsluttende Enhed"]
+    M["Mål"]
+    U -->|"diagnosereference til procedure 0..1 : 0..n"| D
+    D -->|"diagnosticering udført af 0..n : 1"| E
+    D -->|"diagnose afsluttet af 0..n : 0..1"| A
+    D -->|"kan være grundlag for mål"| M

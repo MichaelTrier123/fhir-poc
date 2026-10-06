@@ -1,0 +1,14 @@
+flowchart LR
+  subgraph A[Amt A]
+    U[Bruger via browser]
+    WA[SUP-webapplikation]
+    T[Tabel over SUP-databaser]
+    DA[(SUP-database A)]
+  end
+  subgraph B[Amt B]
+    DB[(SUP-database B)]
+  end
+  U <--> WA
+  WA <--> T
+  WA --> DA
+  WA --> DB

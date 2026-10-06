@@ -1,0 +1,12 @@
+flowchart LR
+  ROOT["Notat"]
+  ROOT --> H["Haendelse"]
+  ROOT -.-> NT["Notat_type"]
+  ROOT -.-> R["Notat_rekvireret_af"]
+  R -.-> RB["Rekvirerende_Behandler"]
+  R --> RE["Rekvirerende_Enhed"]
+  ROOT --> P["Notat_produceret_af"]
+  P -.-> PB["Producerende_Behandler"]
+  P --> PE["Producerende_Enhed"]
+  ROOT -.-> NP["Notat_til_procedure"]
+  ROOT -.-> PK["Procedurekode"]

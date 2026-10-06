@@ -1,0 +1,12 @@
+sequenceDiagram
+    participant U as Bruger / SUP-webapplikation
+    participant DB as SUP-database
+    participant FS as Fødesystemets udtræksprogram
+    U->>DB: Akut bestilling (CPR, sygehusafdeling, informationssystem)
+    DB->>FS: SUPakut-forespørgsel
+    FS-->>DB: Igangsat / data findes ikke
+    DB-->>U: Status som meddelelse
+    alt Patientdata findes
+        FS->>FS: Generér seneste SUP-udtræk
+        FS->>DB: AfleverPatientdata via FTP
+    end

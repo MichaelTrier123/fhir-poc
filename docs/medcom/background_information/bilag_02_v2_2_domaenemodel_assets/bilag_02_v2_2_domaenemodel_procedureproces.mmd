@@ -1,0 +1,15 @@
+flowchart LR
+    Plan["Planlagt procedure"]
+    Ord["Ordination"]
+    Rek["Rekvisition"]
+    Book["Booking af procedure"]
+    Udf["Udført procedure"]
+    Plan -->|"planlægning af ordination"| Ord
+    Plan -->|"planlægning af rekvisition"| Rek
+    Plan -->|"booket procedure"| Book
+    Ord -->|"booket ordination"| Book
+    Rek -->|"booket rekvisition"| Book
+    Ord -->|"udløsende ordination"| Rek
+    Ord -->|"ordination til udført procedure"| Udf
+    Rek -->|"rekvisition til udført procedure"| Udf
+    Plan -->|"planlægning af udført procedure"| Udf

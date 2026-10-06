@@ -1,0 +1,11 @@
+flowchart LR
+  subgraph A[Amt A]
+    U[Bruger]
+    BA[Browser-A]
+    J[Lokalt journal-/EPJ-miljø]
+  end
+  subgraph B[Amt B]
+    DB[SUP-B]
+  end
+  U --> BA --> DB
+  U -. journalisering efter behov .-> J

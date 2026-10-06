@@ -1,0 +1,27 @@
+flowchart TB
+    H["Hændelse"]
+    K["Klassifikation"]
+    O["Organisation"]
+    KP["Kontaktperiode"]
+    M["Medicinering"]
+    N["Notat"]
+    P["Procedureproces"]
+    R["Resultat"]
+    V["Vurdering"]
+    A["Administrative karakteristika"]
+    H -->|"afhænger af"| K
+    KP -->|"afhænger af"| K
+    M -->|"afhænger af"| K
+    N -->|"afhænger af"| K
+    P -->|"afhænger af"| K
+    R -->|"afhænger af"| K
+    V -->|"afhænger af"| K
+    A -->|"afhænger af"| K
+    H -->|"afhænger af"| O
+    KP -->|"afhænger af"| O
+    M -->|"afhænger af"| O
+    N -->|"afhænger af"| O
+    P -->|"afhænger af"| O
+    R -->|"afhænger af"| O
+    V -->|"afhænger af"| O
+    A -->|"afhænger af"| O

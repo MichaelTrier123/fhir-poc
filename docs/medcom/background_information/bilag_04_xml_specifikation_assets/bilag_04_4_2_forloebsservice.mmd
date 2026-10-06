@@ -1,0 +1,7 @@
+flowchart LR
+  ROOT["Aflever_patientdata"]
+  ROOT --> P["Person"]
+  P --> PF["PatientforloebOversigt 0..*"]
+  P -.-> C["CaveOplysninger 0..*"]
+  PF --> O["OprindeligAnsvarligEnhed"]
+  PF -.-> D["Diagnose 0..*"]

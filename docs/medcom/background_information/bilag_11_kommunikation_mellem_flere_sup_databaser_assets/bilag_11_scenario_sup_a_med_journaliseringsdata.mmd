@@ -1,0 +1,15 @@
+flowchart LR
+  subgraph A[Amt A]
+    U[Bruger]
+    BA[Browser-A]
+    DA[(SUP-A)]
+    JD[(Journaliseringsdata fra SUP-B)]
+  end
+  subgraph B[Amt B]
+    DB[(SUP-B)]
+  end
+  U --> BA
+  BA --> DA
+  BA --> DB
+  BA -->|journaliserer fremmede data| JD
+  JD -. lagres adskilt fra lokale data .-> DA

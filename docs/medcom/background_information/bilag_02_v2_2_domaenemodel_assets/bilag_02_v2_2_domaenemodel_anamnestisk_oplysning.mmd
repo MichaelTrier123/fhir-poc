@@ -1,0 +1,6 @@
+flowchart LR
+    A["Anamnestisk oplysning"]
+    U["Udført procedure"]
+    K["Konstaterende Enhed"]
+    U -->|"procedure hvor oplysning blev givet 0..1 : 0..n"| A
+    A -->|"konstateret af 0..n : 1"| K

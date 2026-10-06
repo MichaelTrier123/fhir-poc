@@ -1,0 +1,7 @@
+flowchart LR
+    A[Fødesystem / udtræksprogram] -->|Identificerer nye/ændrede data| B[Generér SUP XML-udtræk]
+    B --> C[FTP-overførsel]
+    C --> D[SUP-databaseserver]
+    D --> E[Loader validerer og indlæser]
+    E --> F[(SUP-database)]
+    E --> G[Meddelelse om udtrækstidspunkt]

@@ -1,0 +1,14 @@
+flowchart LR
+    W[SUP-webapplikation] --> F[Forløbs-Service]
+    W --> H[Hændelses-Service]
+    W --> E[EnkeltHændelses-Service]
+    W --> A[Analyse-Service]
+    W --> S[SUPakutDB-Service]
+    W --> M[Meddelelser-Service]
+    F --> DB[(SUP-database)]
+    H --> DB
+    E --> DB
+    A --> DB
+    S --> DB
+    M --> DB
+    S --> U[Fødesystemets akut-service]

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.medcom.dk/SUP_30" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.medcom.dk/SUP_30">
+	<xsd:include schemaLocation="SUPTyper.xsd"/>
+	<xsd:include schemaLocation="SUPKlassifikation.xsd"/>
+	<xsd:include schemaLocation="SUPOrganisation.xsd"/>
+	<xsd:include schemaLocation="SUPBehandlere.xsd"/>
+	<xsd:include schemaLocation="SUPFaellesAttributter.xsd"/>
+	<xsd:include schemaLocation="SUPHaendelse.xsd"/>
+	<!-- ====================== Pakke: Notat ============================-->
+	<xsd:element name="Notat">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Haendelse"/>
+				<xsd:element ref="Notat_type" minOccurs="0"/>
+				<xsd:element ref="Notat_rekvireret_af" minOccurs="0"/>
+				<xsd:element ref="Notat_produceret_af"/>
+				<xsd:element ref="Notat_til_procedure" minOccurs="0"/>
+				<xsd:element ref="Procedurekode" minOccurs="0"/>
+			</xsd:sequence>
+			<xsd:attribute name="Overskrift" type="xsd:string" use="optional"/>
+			<xsd:attribute name="KonstateringsTidspunkt" type="SUPdateTime" use="required"/>
+			<xsd:attribute name="Broedtekst" type="xsd:string" use="optional"/>
+			<xsd:attribute name="Objektreference" type="xsd:anyURI" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Notat_produceret_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Producerende_Behandler" minOccurs="0"/>
+				<xsd:element ref="Producerende_Enhed"/>
+			</xsd:sequence>
+			<xsd:attribute name="ProcedureSted" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Notat_rekvireret_af">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Rekvirerende_Behandler" minOccurs="0"/>
+				<xsd:element ref="Rekvirerende_Enhed"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Notat_type">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="KodetVaerdi"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Notat_til_procedure">
+		<xsd:complexType>
+			<xsd:attribute name="Udfoert_procedure_identifikation" type="xsd:string" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

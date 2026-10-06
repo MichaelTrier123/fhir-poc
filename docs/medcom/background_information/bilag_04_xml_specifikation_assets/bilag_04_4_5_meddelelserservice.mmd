@@ -1,0 +1,8 @@
+flowchart LR
+  ROOT["Meddelelsesliste"]
+  ROOT --> P["Person"]
+  P --> CPR["CPRnummer"]
+  ROOT -.-> M["Meddelelse 0..*"]
+  M --> D["Dato"]
+  M --> T["Returtekst"]
+  M --> K["Returkode"]

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.medcom.dk/SUP_30" xmlns="http://www.medcom.dk/SUP_30" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:annotation>
+		<xsd:documentation>SUP II version 3.0 XML schema for "Patientforløb"</xsd:documentation>
+	</xsd:annotation>
+	<xsd:include schemaLocation="SUPAdministrativeKarakteristika.xsd"/>
+	<xsd:include schemaLocation="SUPResultat.xsd"/>
+	<xsd:include schemaLocation="SUPVurdering.xsd"/>
+	<xsd:include schemaLocation="SUPMedicinering.xsd"/>
+	<xsd:include schemaLocation="SUPKontaktperiode.xsd"/>
+	<xsd:include schemaLocation="SUPNotat.xsd"/>
+	<xsd:include schemaLocation="SUPProcedureProces.xsd"/>
+	<xsd:element name="Patientforloeb">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="OprindeligAnsvarligEnhed"/>
+				<xsd:choice minOccurs="0" maxOccurs="unbounded">
+					<xsd:element ref="Administrativ_karakteristikum"/>
+					<xsd:element ref="Kontaktperiode"/>
+					<xsd:element ref="Medicinordination"/>
+					<xsd:element ref="Medicingivning"/>
+					<xsd:element ref="Notat"/>
+					<xsd:element ref="Booking_af_procedure"/>
+					<xsd:element ref="Ordination"/>
+					<xsd:element ref="Planlagt_procedure"/>
+					<xsd:element ref="Rekvisition"/>
+					<xsd:element ref="Udfoert_procedure"/>
+					<xsd:element ref="Anamnestisk_oplysning"/>
+					<xsd:element ref="Observation_fund"/>
+					<xsd:element ref="Proeveresultat"/>
+					<xsd:element ref="Diagnose"/>
+					<xsd:element ref="Effekt_af_behandling"/>
+					<xsd:element ref="Komplikation_bivirkning"/>
+					<xsd:element ref="Maal"/>
+					<xsd:element ref="Problem"/>
+				</xsd:choice>
+			</xsd:sequence>
+			<xsd:attribute name="SammenknytningsIdentifikation" type="xsd:string" use="optional">
+				<xsd:annotation>
+					<xsd:documentation>Angives på "underforløb" jf. LPR3 forløbsbegrebsmodellen og udfyldes med "Identifikation" værdien på "hovedforløbet".</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="Identifikation" type="xsd:string" use="required"/>
+			<xsd:attribute name="Starttidspunkt" type="SUPdateTime" use="optional"/>
+			<xsd:attribute name="Sluttidspunkt" type="SUPdateTime" use="optional"/>
+			<xsd:attribute name="Teknisk_forloeb" use="optional">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="X"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+			<xsd:attribute name="Foedesystem" type="xsd:string" use="required"/>
+			<xsd:attribute name="Udtraekstidspunkt" type="SUPdateTime" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

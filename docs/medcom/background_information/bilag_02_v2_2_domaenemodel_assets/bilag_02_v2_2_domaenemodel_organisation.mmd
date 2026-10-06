@@ -1,0 +1,30 @@
+flowchart TB
+    O["Organisatorisk Enhed"]
+    AP["AnsvarligPerson"]
+    R0["RegistreringsEnhed"]
+    R1["Ordinerende Enhed"]
+    R2["Producerende Enhed"]
+    R3["Seponerende Enhed"]
+    R4["Diagnose ansvarlig Enhed"]
+    R5["Afsluttende Enhed"]
+    R6["Rekvirerende Enhed"]
+    R7["Observerende Enhed"]
+    R8["Konstaterende Enhed"]
+    R9["Lægeligt kontaktansvarlig Enhed"]
+    R10["Oprindelig forløbsansvarlig enhed"]
+    R11["Planlæggende Enhed"]
+    R12["Besluttende Enhed"]
+    O -->|"specialisering/rolle"| R0
+    O -->|"specialisering/rolle"| R1
+    O -->|"specialisering/rolle"| R2
+    O -->|"specialisering/rolle"| R3
+    O -->|"specialisering/rolle"| R4
+    O -->|"specialisering/rolle"| R5
+    O -->|"specialisering/rolle"| R6
+    O -->|"specialisering/rolle"| R7
+    O -->|"specialisering/rolle"| R8
+    O -->|"specialisering/rolle"| R9
+    O -->|"specialisering/rolle"| R10
+    O -->|"specialisering/rolle"| R11
+    O -->|"specialisering/rolle"| R12
+    AP -->|"person knyttet til enhed"| O

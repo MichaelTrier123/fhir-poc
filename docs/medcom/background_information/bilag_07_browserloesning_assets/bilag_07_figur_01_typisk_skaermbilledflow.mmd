@@ -1,0 +1,7 @@
+flowchart LR
+    A[Startbillede] --> B[Forløbsoversigt]
+    B -->|vælg forløb| C[Hændelsesoversigt]
+    C -->|vælg hændelse| D[Hændelsesdetaljer]
+    D -->|tilbage| C
+    C -->|tilbage| B
+    B -->|ny bestilling| A
